@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Week 07: Cell Division — Assignments</title>
+  <link rel="stylesheet" href="../course-styles.css">
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="week-label">Week 07 · Assignments</div>
+    <h1>Cell Division</h1>
+  </div>
+
+  <div class="due-banner">
+    All work due Sunday, {{DUE_DATE}} by 11:59 PM. Assignments will not be reopened.
+  </div>
+
+  <!-- EMBEDDED LEARNING QUESTIONS (ELQs)
+       ELQs are embedded in the video itself and submitted through Canvas.
+       This block is a brief reminder — it appears on every week's assignment page. -->
+  <div class="assignment-block">
+    <h3>Embedded Learning Questions (ELQs) <span class="points-badge">varies</span></h3>
+    <p>ELQs appear inside each video lesson. They are designed to focus your attention on key concepts as you watch. Answer them as you go — they cannot be completed after the video ends.</p>
+    <p>ELQs can be retaken an unlimited number of times before the due date.</p>
+  </div>
+
+  <!-- HOMEWORK ASSIGNMENT (include only on weeks with HW)
+       Remove this block entirely on weeks without a homework assignment. -->
+  {{OPTIONAL_HW_BLOCK}}
+  <!-- Template for HW block:
+  <div class="assignment-block">
+    <h3>{{HW_TITLE}} <span class="points-badge">{{HW_POINTS}} pts</span></h3>
+    <p>{{HW_DESCRIPTION}}</p>
+    <p><strong>Submit:</strong> Through Canvas by Sunday 11:59 PM.</p>
+  </div>
+  -->
+
+  <!-- WRITING ASSIGNMENT (include only on weeks with a writing assignment)
+       Two writing assignments total: "Interpreting a Figure" and "Writing an Abstract".
+       Remove this block on all other weeks. -->
+  {{OPTIONAL_WRITING_BLOCK}}
+  <!-- Template for writing block:
+  <div class="assignment-block">
+    <h3>{{WRITING_TITLE}} <span class="points-badge">{{WRITING_POINTS}} pts</span></h3>
+    <p>{{WRITING_DESCRIPTION}}</p>
+    <p><strong>Submit:</strong> Through Canvas by Sunday 11:59 PM. All work must be in your own voice.</p>
+  </div>
+  -->
+
+  <!-- TEST REMINDER (include only on weeks with a scheduled test)
+       Remove this block on non-test weeks. -->
+  {{OPTIONAL_TEST_BLOCK}}
+  <!-- Template for test block:
+  <div class="assignment-block">
+    <h3>Test {{TEST_NUM}} <span class="points-badge">150 pts</span></h3>
+    <p>Test {{TEST_NUM}} covers {{TEST_COVERAGE}}. You must complete it through <strong>Measure Learning / ProctorU</strong> or at a registered testing center.</p>
+    <p><strong>Window:</strong> {{TEST_OPEN_DATE}} through {{TEST_CLOSE_DATE}}.</p>
+    <p>Schedule your testing appointment early — testing centers fill up.</p>
+  </div>
+  -->
+
+</div>
+</body>
+</html>

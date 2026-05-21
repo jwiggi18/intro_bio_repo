@@ -1,0 +1,319 @@
+/* ============================================================
+   BIOL 1113 — Course Styles
+   Single source of truth for all Canvas page styles.
+
+   IMPORTANT: Do not put <style> blocks in HTML source files.
+   All CSS lives here. The build pipeline inlines it for Canvas.
+   ============================================================ */
+
+/* --- CSS Custom Properties --- */
+:root {
+  --color-primary:      #1a3a5c;   /* Deep navy — headers, links */
+  --color-accent:       #cc5500;   /* OSU burnt orange — highlights */
+  --color-accent-light: #fff3e0;   /* Light orange — warning/notice bg */
+  --color-bg:           #f7f9fc;   /* Page background */
+  --color-surface:      #ffffff;   /* Card/box background */
+  --color-border:       #d0d7de;   /* Borders and dividers */
+  --color-text:         #1f2328;   /* Body text */
+  --color-text-muted:   #57606a;   /* Secondary text */
+  --color-success-bg:   #e6f4ea;   /* Objectives box bg */
+  --color-success-border:#2e7d32;  /* Objectives box border */
+  --color-info-bg:      #e8eaf6;   /* Info/syllabus notice bg */
+  --color-info-border:  #3949ab;   /* Info/syllabus notice border */
+  --color-video-bg:     #fdf6ec;   /* Video lesson card bg */
+  --color-video-border: #e0a050;   /* Video lesson card border */
+
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --max-width: 840px;
+  --radius: 6px;
+}
+
+/* --- Base --- */
+body {
+  font-family: var(--font-stack);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  margin: 0;
+  padding: 16px;
+}
+
+.page-wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* --- Page Header --- */
+.page-header {
+  border-bottom: 3px solid var(--color-accent);
+  margin-bottom: 28px;
+  padding-bottom: 12px;
+}
+
+.page-header .week-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.page-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 6px 0;
+  line-height: 1.25;
+}
+
+.page-header .page-subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* --- Section Headings --- */
+h2 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px 0;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 18px 0 8px 0;
+}
+
+/* --- Objectives Box --- */
+.objectives-box {
+  background: var(--color-success-bg);
+  border-left: 4px solid var(--color-success-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.objectives-box h2 {
+  color: var(--color-success-border);
+  border-bottom: none;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.objectives-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.objectives-box li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* --- Task List (what to do this week) --- */
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.task-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.task-list li:last-child {
+  border-bottom: none;
+}
+
+.task-list .task-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.task-list .task-label {
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.task-list .task-detail {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* --- Video Card --- */
+.video-card {
+  background: var(--color-video-bg);
+  border: 1px solid var(--color-video-border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+
+.video-card .video-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 6px 0;
+}
+
+.video-card .video-meta {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.video-card .focus-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.video-card .focus-questions {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.video-card .focus-questions li {
+  margin-bottom: 4px;
+}
+
+/* --- Reading Card --- */
+.reading-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+
+.reading-card .reading-source {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.reading-card .reading-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.reading-card .reading-note {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* --- Notice / Info Box --- */
+.notice-box {
+  background: var(--color-info-bg);
+  border-left: 4px solid var(--color-info-border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.notice-box strong {
+  color: var(--color-info-border);
+}
+
+/* --- Due Date Banner --- */
+.due-banner {
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius);
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7a2e00;
+  margin-bottom: 20px;
+}
+
+/* --- Assignment Block --- */
+.assignment-block {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 18px 22px;
+  margin-bottom: 16px;
+}
+
+.assignment-block h3 {
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.assignment-block .points-badge {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* --- Utility --- */
+a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+p {
+  margin: 0 0 14px 0;
+  font-size: 14px;
+}
+
+ul, ol {
+  font-size: 14px;
+  margin: 0 0 14px 0;
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 24px 0;
+}
