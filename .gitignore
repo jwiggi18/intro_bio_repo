@@ -1,0 +1,26 @@
+# Canvas API credentials — NEVER commit these
+.env
+
+# Build output (generated, not source)
+build/output/
+build/biol1113/
+
+# Packaged Canvas cartridges (generated)
+dist/
+*.imscc
+
+# Quiz and exam content (answers in plaintext)
+quizzes/
+exams/
+*.quiz.json
+
+# OS files
+.DS_Store
+.venv/
+__pycache__/
+
+# Office lock files (created when a doc is open)
+~$*
+
+# Claude Code agent worktrees and local config
+.claude/
