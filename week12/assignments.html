@@ -14,7 +14,7 @@
   </div>
 
   <div class="due-banner">
-    All work due Sunday, {{DUE_DATE}} by 11:59 PM. Assignments will not be reopened.
+    All work due Sunday, November 8 by 11:59 PM. Assignments will not be reopened.
   </div>
 
   <!-- EMBEDDED LEARNING QUESTIONS (ELQs)
@@ -28,7 +28,8 @@
 
   <!-- HOMEWORK ASSIGNMENT (include only on weeks with HW)
        Remove this block entirely on weeks without a homework assignment. -->
-  {{OPTIONAL_HW_BLOCK}}
+  <!-- HW assignment block: add when a homework assignment is scheduled for this week.
+     See template comment below for the markup to use. -->
   <!-- Template for HW block:
   <div class="assignment-block">
     <h3>{{HW_TITLE}} <span class="points-badge">{{HW_POINTS}} pts</span></h3>
@@ -40,7 +41,8 @@
   <!-- WRITING ASSIGNMENT (include only on weeks with a writing assignment)
        Two writing assignments total: "Interpreting a Figure" and "Writing an Abstract".
        Remove this block on all other weeks. -->
-  {{OPTIONAL_WRITING_BLOCK}}
+  <!-- Writing assignment block: add for the two writing assignment weeks only.
+     See template comment below for the markup to use. -->
   <!-- Template for writing block:
   <div class="assignment-block">
     <h3>{{WRITING_TITLE}} <span class="points-badge">{{WRITING_POINTS}} pts</span></h3>
@@ -51,7 +53,7 @@
 
   <!-- TEST REMINDER (include only on weeks with a scheduled test)
        Remove this block on non-test weeks. -->
-  {{OPTIONAL_TEST_BLOCK}}
+  <!-- No test opens this week. Remove this comment when adding a test block. -->
   <!-- Template for test block:
   <div class="assignment-block">
     <h3>Test {{TEST_NUM}} <span class="points-badge">150 pts</span></h3>
