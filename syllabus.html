@@ -132,15 +132,13 @@
     .cover-right {
       flex: 1;
       background: #f7f9fc;
-      padding: 40px 40px 40px 36px;
+      padding: 28px 36px 28px 32px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      gap: 16px;
     }
 
-    .cover-instructor {
-      margin-bottom: 24px;
-    }
+    .cover-instructor { /* no extra margin — gap handles spacing */ }
 
     .cover-instructor-name {
       font-size: 20px;
@@ -156,17 +154,18 @@
     }
 
     .cover-info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .cover-info-card {
+      flex: 1 1 calc(50% - 5px);
+      min-width: 0;
       background: var(--white);
       border: 1px solid var(--gray-border);
       border-radius: 8px;
-      padding: 14px 16px;
+      padding: 10px 12px;
     }
 
     .cover-info-card .card-label {
@@ -175,7 +174,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--orange);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
     }
 
     .cover-info-card .card-value {
@@ -191,13 +190,37 @@
       margin-top: 2px;
     }
 
-    .cover-tagline {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.55;
-      border-top: 1px solid var(--gray-border);
-      padding-top: 16px;
+    /* What is Introductory Biology? — teal card inside cover-right */
+    .cover-intro-bio {
+      border: 3px solid #176873;
+      border-radius: 8px;
+      overflow: hidden;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
+
+    .cover-intro-bio .bio-label {
+      padding: 9px 14px;
+      background: #ffffff;
+      color: #176873;
+      font-size: 13px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(23,104,115,0.25);
+    }
+
+    .cover-intro-bio .bio-body {
+      background: #e3f2f1;
+      padding: 12px 14px;
+    }
+
+    .cover-intro-bio p {
+      font-size: 12px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 7px;
+    }
+
+    .cover-intro-bio p:last-child { margin-bottom: 0; }
 
     /* ---- Sticky nav bar (web only) ---- */
     .sticky-nav {
@@ -484,14 +507,15 @@
 
     .print-btn:hover { background: #b34a00; }
 
-    /* ---- Overview two-column ---- */
+    /* ---- Overview two-column (flex — WeasyPrint-safe) ---- */
     .overview-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       gap: 28px;
       margin-bottom: 28px;
-      align-items: start;
+      align-items: flex-start;
     }
+
+    .overview-cols > div { flex: 1; min-width: 0; }
 
     .overview-cols h3:first-child { margin-top: 0; }
 
@@ -510,6 +534,8 @@
       align-items: center;
       margin: 20px 0 28px;
       flex-wrap: wrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     .chart-legend {
@@ -533,17 +559,21 @@
     }
 
     .assessment-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-wrap: wrap;
       gap: 14px;
       margin: 4px 0 24px;
     }
 
     .assessment-card {
+      flex: 1 1 calc(50% - 7px);
+      min-width: 0;
       border-radius: 8px;
       overflow: hidden;
       border-width: 3px;
       border-style: solid;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     .acard-title {
@@ -571,6 +601,53 @@
       border-top: 1px solid rgba(0,0,0,0.08);
     }
 
+    /* ---- Cover-page intro strip (What is Intro Bio?) ---- */
+    .cover-intro {
+      background: #e3f2f1;
+      border-top: 3px solid #176873;
+      border-bottom: 3px solid #176873;
+      padding: 28px 56px;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .cover-intro h3 {
+      color: #176873;
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0 0 10px;
+    }
+
+    .cover-intro p { font-size: 14px; margin-bottom: 8px; }
+    .cover-intro p:last-child { margin-bottom: 0; }
+
+    /* ---- Teaching Philosophy card (light teal) ---- */
+    .philosophy-card {
+      border: 3px solid #176873;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .philosophy-card-title {
+      padding: 10px 18px;
+      background: #ffffff;
+      color: #176873;
+      font-size: 15px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(23,104,115,0.25);
+    }
+
+    .philosophy-card-body {
+      background: #e3f2f1;
+      padding: 18px 20px;
+    }
+
+    .philosophy-card-body p { font-size: 14px; margin-bottom: 10px; }
+    .philosophy-card-body p:last-child { margin-bottom: 0; }
+
     /* ---- Accessibility warning callout ---- */
     .callout-warning {
       background: #fff8e1;
@@ -587,6 +664,12 @@
       content: "⚠\00a0 ";
     }
 
+    /* ---- Page size (WeasyPrint + browser print) ---- */
+    @page {
+      size: letter;
+      margin: 0.65in;
+    }
+
     /* =====================================================
        PRINT / PDF STYLES
        Use File → Print → Save as PDF in your browser.
@@ -594,7 +677,7 @@
        ===================================================== */
     @media print {
       body { background: white; font-size: 11pt; }
-      .page { box-shadow: none; max-width: 100%; }
+      .page { box-shadow: none; max-width: 100%; width: 100%; }
       .sticky-nav,
       .print-btn-wrap { display: none !important; }
 
@@ -686,9 +769,12 @@
         </div>
       </div>
 
-      <div class="cover-tagline">
-        Biology is the science of life — from microscopic molecules to entire ecosystems.
-        This course builds the foundation you need for every biology course ahead.
+      <div class="cover-intro-bio">
+        <div class="bio-label">What is Introductory Biology?</div>
+        <div class="bio-body">
+          <p>Biology is the science of life — the study of everything from microscopic molecules to entire ecosystems. This course is designed to give you a strong foundation in the core concepts of biology so that you're ready to dive deeper into more advanced topics later in your college career. Along the way, you'll start to see how these concepts connect, giving you a greater appreciation for the complexity (and beauty!) of living systems.</p>
+          <p>Our goals are simple: to help you build confidence as a scientist, to give you the tools you'll need for future courses, and — most importantly — to spark your curiosity. Biology is full of fascinating questions, and we hope this course helps you discover the excitement of exploring them.</p>
+        </div>
       </div>
     </div>
 
@@ -720,36 +806,36 @@
       <h2>Course Overview</h2>
     </div>
 
-    <!-- Two-column: left = Course Format + Instructor title | right = What is Intro Bio? in teal box -->
+    <!-- Two columns: Course Format + Instructor title (left) | Communication (right) -->
     <div class="overview-cols">
 
       <div>
         <h3 style="margin-top:0">Course Format</h3>
-        <p>This course is taught online via asynchronous instruction through the course Canvas page, with exams taken via Measure Learning/ProctorU or scheduled by you at a registered testing center.</p>
+        <p>This course is taught online via asynchronous instruction through the course Canvas page, with exams taken via <a href="https://itle.okstate.edu/online-test-proctoring" target="_blank">Measure Learning/ProctorU</a> or scheduled by you at a registered testing center.</p>
 
         <h3>What to Call Your Instructor</h3>
-        <p>At the college level, particularly in the biological sciences, your instructors all have terminal degrees (the highest possible degree in our field: Ph.D.). It is appropriate to call us <em>Dr.</em> or <em>Professor.</em> You may call me Dr. Wiggins or Professor Wiggins.</p>
+        <p>At the college level, particularly in the biological sciences, your instructors all have terminal degrees (the highest possible degree in our field: Ph.D.). It is appropriate to call us <em>Dr.</em> or <em>Professor.</em> You may call me Dr. Wiggins or Professor Wiggins. <a href="https://www.britannica.com/science/Doctor-of-Medicine#:~:text=CITE-,doctor,-academic%20degree" target="_blank">History of the title &#8220;doctor&#8221;</a></p>
       </div>
 
-      <div class="teal-outline-box">
-        <h3>What is Introductory Biology?</h3>
-        <p>Biology is the science of life — the study of everything from microscopic molecules to entire ecosystems. This course is designed to give you a strong foundation in the core concepts of biology so that you're ready to dive deeper into more advanced topics later in your college career. Along the way, you'll start to see how these concepts connect, giving you a greater appreciation for the complexity (and beauty!) of living systems.</p>
-        <p>Our goals are simple: to help you build confidence as a scientist, to give you the tools you'll need for future courses, and — most importantly — to spark your curiosity. Biology is full of fascinating questions, and we hope this course helps you discover the excitement of exploring them.</p>
+      <div>
+        <h3 style="margin-top:0">Communication</h3>
+        <div class="box box-blue">
+          <strong>Your success is important.</strong>
+          Please do not hesitate to contact me at any time — I am here to help! The best way to reach me is through email at <a href="mailto:jodie.wiggins@okstate.edu">jodie.wiggins@okstate.edu</a>. I respond to all emails within 24 hours in most cases. I do not respond to messages after 5 PM or on weekends. You can also visit virtual office hours (see Zoom link on Canvas) or schedule a face-to-face meeting.
+        </div>
       </div>
 
     </div><!-- /overview-cols -->
 
-    <h3>Communication</h3>
-    <div class="box box-blue">
-      <strong>Your success is important.</strong>
-      Please do not hesitate to contact me at any time — I am here to help! The best way to reach me is through email at <a href="mailto:jodie.wiggins@okstate.edu">jodie.wiggins@okstate.edu</a>. I respond to all emails within 24 hours in most cases. I do not respond to messages after 5 PM or on weekends. You can also visit virtual office hours (see Zoom link on Canvas) or schedule a face-to-face meeting.
+    <div class="philosophy-card">
+      <div class="philosophy-card-title">My Teaching Philosophy</div>
+      <div class="philosophy-card-body">
+        <p>My teaching philosophy for concurrent enrollment courses centers on the idea that carefully designed learning materials can create a rigorous, engaging, and equitable learning environment even when students interact with the content outside of a traditional university classroom.</p>
+        <p>Instructional videos are typically short — generally under ten minutes — to support attention and reduce unnecessary cognitive load. Each video is accompanied by clear guidance about what students should focus on while watching. By explicitly identifying the key ideas or questions students should be considering, I help direct attention toward the most important conceptual relationships rather than passive viewing.</p>
+        <p>Assigned readings are organized around specific topics rather than traditional textbook chapters, allowing students to focus on the most relevant concepts. This approach reflects my broader view of learning as an active cognitive process. Students develop durable understanding when they revisit challenging ideas, make connections across topics, and apply biological principles to new situations.</p>
+        <p>Ultimately, my goal is to create a learning environment that maintains the rigor and expectations of a university biology class while providing students with the structure and clarity needed to engage deeply with the material.</p>
+      </div>
     </div>
-
-    <h3>My Teaching Philosophy</h3>
-    <p>My teaching philosophy for concurrent enrollment courses centers on the idea that carefully designed learning materials can create a rigorous, engaging, and equitable learning environment even when students interact with the content outside of a traditional university classroom.</p>
-    <p>Instructional videos are typically short — generally under ten minutes — to support attention and reduce unnecessary cognitive load. Each video is accompanied by clear guidance about what students should focus on while watching. By explicitly identifying the key ideas or questions students should be considering, I help direct attention toward the most important conceptual relationships rather than passive viewing.</p>
-    <p>Assigned readings are organized around specific topics rather than traditional textbook chapters, allowing students to focus on the most relevant concepts. This approach reflects my broader view of learning as an active cognitive process. Students develop durable understanding when they revisit challenging ideas, make connections across topics, and apply biological principles to new situations.</p>
-    <p>Ultimately, my goal is to create a learning environment that maintains the rigor and expectations of a university biology class while providing students with the structure and clarity needed to engage deeply with the material.</p>
   </div>
 
   <!-- ============================================================
@@ -767,7 +853,7 @@
       Each week a new module will become accessible on Monday morning. It will include all of your assignments for the week: lecture videos, readings, and sometimes additional media such as podcasts. Assignments are open from Monday morning through Sunday at 11:59 PM — six days to complete them. They will not be reopened.
     </div>
 
-    <p>Make sure your preferred email is set up in Canvas so you receive notifications. Resources to help you get started with Canvas include the Student Canvas Videos and the Passport to Canvas learning modules.</p>
+    <p>Make sure your preferred email is set up in Canvas so you receive notifications. Resources to help you get started with Canvas include the <a href="https://osuonline.okstate.edu/canvas-student-videos.html" target="_blank">Student Canvas Videos</a> and the <a href="https://canvas.okstate.edu/enroll/MNLEMT?wrap=1" target="_blank">Passport to Canvas</a> learning modules.</p>
 
     <h3>Required Materials</h3>
     <p>This course uses Open Educational Resources (OERs) — there is no textbook to purchase. Our primary text is the freely available online <a href="https://openstax.org/details/books/biology-2e" target="_blank"><strong>OpenStax Biology 2e</strong></a>. Reading assignments will be linked either to this book or other freely available resources as appropriate.</p>
@@ -819,113 +905,76 @@
       <h2>Grades &amp; Assessment</h2>
     </div>
 
-    <!-- Donut chart + legend -->
+    <!-- Donut chart + legend (static SVG — no JS required) -->
     <div class="grades-chart-wrap">
-      <canvas id="gradeChart" width="260" height="260" style="flex-shrink:0"></canvas>
-      <div class="chart-legend" id="chartLegend"></div>
+      <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0" aria-label="Grade breakdown donut chart">
+        <!-- Slices -->
+        <path d="M130.00,16.00 A114,114,0,0,1,165.23,238.42 L146.69,181.36 A54,54,0,0,0,130.00,76.00Z" fill="#2c6fad" stroke="white" stroke-width="2.5"/>
+        <path d="M165.23,238.42 A114,114,0,0,1,37.77,197.01 L86.31,161.74 A54,54,0,0,0,146.69,181.36Z" fill="#7d3c98" stroke="white" stroke-width="2.5"/>
+        <path d="M37.77,197.01 A114,114,0,0,1,21.58,94.77 L78.64,113.31 A54,54,0,0,0,86.31,161.74Z" fill="#17a589" stroke="white" stroke-width="2.5"/>
+        <path d="M21.58,94.77 A114,114,0,0,1,62.99,37.77 L98.26,86.31 A54,54,0,0,0,78.64,113.31Z" fill="#d35400" stroke="white" stroke-width="2.5"/>
+        <path d="M62.99,37.77 A114,114,0,0,1,130.00,16.00 L130.00,76.00 A54,54,0,0,0,98.26,86.31Z" fill="#c0392b" stroke="white" stroke-width="2.5"/>
+        <!-- Percentage labels -->
+        <text x="213.0" y="116.9" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">45%</text>
+        <text x="104.0" y="209.9" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">20%</text>
+        <text x="47.0"  y="143.1" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">15%</text>
+        <text x="62.0"  y="80.6"  text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">10%</text>
+        <text x="104.0" y="50.1"  text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">10%</text>
+        <!-- Donut hole -->
+        <circle cx="130" cy="130" r="54" fill="white"/>
+        <!-- Center label -->
+        <text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#176873" font-weight="bold" font-size="20" font-family="-apple-system,sans-serif">1000</text>
+        <text x="130" y="141" text-anchor="middle" dominant-baseline="middle" fill="#57606a" font-size="11" font-family="-apple-system,sans-serif">total pts</text>
+      </svg>
+
+      <div class="chart-legend">
+        <div class="legend-item"><span class="legend-swatch" style="background:#2c6fad"></span><span><strong>Tests 1, 2 &amp; 3</strong> &mdash; 450&thinsp;pts (45%)</span></div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#7d3c98"></span><span><strong>Final Exam</strong> &mdash; 200&thinsp;pts (20%)</span></div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#17a589"></span><span><strong>ELQs</strong> &mdash; 150&thinsp;pts (15%)</span></div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#d35400"></span><span><strong>Take-Home HW</strong> &mdash; 100&thinsp;pts (10%)</span></div>
+        <div class="legend-item"><span class="legend-swatch" style="background:#c0392b"></span><span><strong>Writing Assignments</strong> &mdash; 100&thinsp;pts (10%)</span></div>
+      </div>
     </div>
 
-    <!-- Assessment cards (built by script below) -->
-    <div class="assessment-cards" id="assessmentCards"></div>
+    <!-- Assessment cards -->
+    <div class="assessment-cards">
 
-    <script>
-    (function () {
-      const assessments = [
-        {
-          label: 'Tests 1, 2 &amp; 3', pts: 450, pct: 45, color: '#2c6fad', light: '#ddeaf8',
-          desc: 'Three exams, each worth 150 points. Taken via <strong>Measure Learning / ProctorU</strong> or at a certified testing center — self-scheduled within the test window. If you miss a test, notify Dr. Wiggins within 48 hours; your Final Exam grade may substitute for one missed test.'
-        },
-        {
-          label: 'Final Exam', pts: 200, pct: 20, color: '#7d3c98', light: '#ecdff5',
-          desc: 'Comprehensive exam covering all 15 weeks of course content. Taken during finals week via Measure Learning / ProctorU or at a certified testing center.'
-        },
-        {
-          label: 'ELQs', pts: 150, pct: 15, color: '#17a589', light: '#d1f2eb',
-          desc: 'Short questions embedded directly in each video lesson. Designed to focus your attention on key concepts as you watch. ELQs may be retaken an unlimited number of times before the weekly due date. <em>Material without an ELQ can still appear on exams.</em>'
-        },
-        {
-          label: 'Take-Home HW', pts: 100, pct: 10, color: '#d35400', light: '#fde8d0',
-          desc: 'Assignments designed to help you process the most challenging material. Specific details provided with each assignment. All work submitted through Canvas.'
-        },
-        {
-          label: 'Writing Assignments', pts: 100, pct: 10, color: '#c0392b', light: '#fadbd8',
-          desc: '<strong>Interpreting a Figure</strong> — Identify key components of a figure from a peer-reviewed article, including dependent and independent variables. <strong>Writing an Abstract</strong> — Write a scientific abstract based on a figure. All writing must be in your own voice.'
-        },
-      ];
+      <div class="assessment-card" style="border-color:#2c6fad">
+        <div class="acard-title" style="color:#2c6fad">Tests 1, 2 &amp; 3
+          <span class="acard-pts" style="color:#2c6fad">450 pts &nbsp;&middot;&nbsp; 45%</span>
+        </div>
+        <div class="acard-body" style="background:#ddeaf8">Three exams, each worth 150 points. Taken via <strong>Measure Learning / ProctorU</strong> or at a certified testing center — self-scheduled within the test window. If you miss a test, notify Dr. Wiggins within 48 hours; your Final Exam grade may substitute for one missed test.</div>
+      </div>
 
-      // ── Donut chart ────────────────────────────────────────────
-      const canvas = document.getElementById('gradeChart');
-      const ctx    = canvas.getContext('2d');
-      const cx = 130, cy = 130, outerR = 114, innerR = 54;
-      let angle = -Math.PI / 2;
+      <div class="assessment-card" style="border-color:#7d3c98">
+        <div class="acard-title" style="color:#7d3c98">Final Exam
+          <span class="acard-pts" style="color:#7d3c98">200 pts &nbsp;&middot;&nbsp; 20%</span>
+        </div>
+        <div class="acard-body" style="background:#ecdff5">Comprehensive exam covering all 15 weeks of course content. Taken during finals week via Measure Learning / ProctorU or at a certified testing center.</div>
+      </div>
 
-      assessments.forEach(function (a) {
-        const sweep = (a.pts / 1000) * 2 * Math.PI;
-        // Slice
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.arc(cx, cy, outerR, angle, angle + sweep);
-        ctx.closePath();
-        ctx.fillStyle = a.color;
-        ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        // Label
-        if (a.pct >= 10) {
-          const mid = angle + sweep / 2;
-          const lr  = (outerR + innerR) / 2;
-          ctx.fillStyle = '#fff';
-          ctx.font = 'bold 13px -apple-system,BlinkMacSystemFont,sans-serif';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(a.pct + '%', cx + Math.cos(mid) * lr, cy + Math.sin(mid) * lr);
-        }
-        angle += sweep;
-      });
+      <div class="assessment-card" style="border-color:#17a589">
+        <div class="acard-title" style="color:#17a589">ELQs
+          <span class="acard-pts" style="color:#17a589">150 pts &nbsp;&middot;&nbsp; 15%</span>
+        </div>
+        <div class="acard-body" style="background:#d1f2eb">Short questions embedded directly in each video lesson. Designed to focus your attention on key concepts as you watch. ELQs may be retaken an unlimited number of times before the weekly due date. <em>Material without an ELQ can still appear on exams.</em></div>
+      </div>
 
-      // Donut hole
-      ctx.beginPath();
-      ctx.arc(cx, cy, innerR, 0, 2 * Math.PI);
-      ctx.fillStyle = '#fff';
-      ctx.fill();
+      <div class="assessment-card" style="border-color:#d35400">
+        <div class="acard-title" style="color:#d35400">Take-Home HW
+          <span class="acard-pts" style="color:#d35400">100 pts &nbsp;&middot;&nbsp; 10%</span>
+        </div>
+        <div class="acard-body" style="background:#fde8d0">Assignments designed to help you process the most challenging material. Specific details provided with each assignment. All work submitted through Canvas.</div>
+      </div>
 
-      // Center text
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = '#176873';
-      ctx.font = 'bold 20px -apple-system,BlinkMacSystemFont,sans-serif';
-      ctx.fillText('1000', cx, cy - 9);
-      ctx.font = '11px -apple-system,BlinkMacSystemFont,sans-serif';
-      ctx.fillStyle = '#57606a';
-      ctx.fillText('total pts', cx, cy + 11);
+      <div class="assessment-card" style="border-color:#c0392b">
+        <div class="acard-title" style="color:#c0392b">Writing Assignments
+          <span class="acard-pts" style="color:#c0392b">100 pts &nbsp;&middot;&nbsp; 10%</span>
+        </div>
+        <div class="acard-body" style="background:#fadbd8"><strong>Interpreting a Figure</strong> — Identify key components of a figure from a peer-reviewed article, including dependent and independent variables. <strong>Writing an Abstract</strong> — Write a scientific abstract based on a figure. All writing must be in your own voice.</div>
+      </div>
 
-      // ── Legend ──────────────────────────────────────────────────
-      const legendEl = document.getElementById('chartLegend');
-      assessments.forEach(function (a) {
-        const div = document.createElement('div');
-        div.className = 'legend-item';
-        div.innerHTML = '<span class="legend-swatch" style="background:' + a.color + '"></span>'
-          + '<span><strong>' + a.label + '</strong> &mdash; ' + a.pts + '&thinsp;pts (' + a.pct + '%)</span>';
-        legendEl.appendChild(div);
-      });
-
-      // ── Assessment cards ─────────────────────────────────────────
-      const cardsEl = document.getElementById('assessmentCards');
-      assessments.forEach(function (a) {
-        const card = document.createElement('div');
-        card.className = 'assessment-card';
-        card.style.borderColor = a.color;
-        card.innerHTML =
-          '<div class="acard-title" style="color:' + a.color + '">'
-          + a.label
-          + '<span class="acard-pts" style="color:' + a.color + '">'
-          + a.pts + ' pts &nbsp;&middot;&nbsp; ' + a.pct + '%</span></div>'
-          + '<div class="acard-body" style="background:' + a.light + '">' + a.desc + '</div>';
-        cardsEl.appendChild(card);
-      });
-    })();
-    </script>
+    </div><!-- /assessment-cards -->
 
     <h3>Grade Scale</h3>
     <div class="grade-scale">
@@ -1055,7 +1104,7 @@
     </div>
 
     <h3>Participation &amp; Canvas Engagement</h3>
-    <p>For success in this course you need to learn how to use Canvas. Resources to help include the Student Canvas Videos and the Passport to Canvas learning modules. You are expected to log in to Canvas on Monday morning each week.</p>
+    <p>For success in this course you need to learn how to use Canvas. Resources to help include the <a href="https://osuonline.okstate.edu/canvas-student-videos.html" target="_blank">Student Canvas Videos</a> and the <a href="https://canvas.okstate.edu/enroll/MNLEMT?wrap=1" target="_blank">Passport to Canvas</a> learning modules. You are expected to log in to Canvas on Monday morning each week.</p>
 
     <h3>Classroom and Online Etiquette</h3>
     <p>I am committed to creating a safe and respectful space for learning, teaching, and contributing. Instructors and students are expected to show respect and courtesy to others. All interactions should be courteous and professional regardless of platform — online or in-person.</p>
