@@ -1,0 +1,22 @@
+# BIOL 1113 — Class Blog Directory data file
+#
+# HOW TO EDIT THIS FILE (no coding needed):
+#   1. On GitHub, open this file: docs/randomizer/blogs.txt
+#   2. Click the pencil icon (top right) to edit.
+#   3. Add one line per student blog, in this exact format:
+#        Student Name or Blog Title | https://theirblog.wordpress.com
+#   4. Scroll down, add a short commit message (e.g. "add week 2 blogs"),
+#      and click "Commit changes directly to the main branch."
+#   5. The live page updates automatically within a minute or two —
+#      no other steps needed.
+#
+# Rules:
+#   - Lines starting with # are ignored (comments like this one).
+#   - Blank lines are ignored.
+#   - Everything before the first | is the display name.
+#   - Everything after the first | is the URL (must start with https://).
+#   - Use each student's blog HOMEPAGE URL (not a specific post URL).
+#
+# Example (delete the # to activate a real row, or just copy the format):
+# Alex's Biology Blog | https://alexbio.wordpress.com
+# Jordan | https://jordanscience.wordpress.com
