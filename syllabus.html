@@ -35,7 +35,7 @@
       color: var(--text);
       background: #f0f2f5;
       line-height: 1.65;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     /* ---- Page wrapper ---- */
@@ -64,7 +64,7 @@
     }
 
     .cover-course-code {
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 800;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -73,7 +73,7 @@
     }
 
     .cover-left h1 {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 800;
       line-height: 1.1;
       color: var(--white);
@@ -81,7 +81,7 @@
     }
 
     .cover-left .cover-semester {
-      font-size: 12px;
+      font-size: 16px;
       color: rgba(255,255,255,0.55);
       margin-bottom: 32px;
     }
@@ -100,13 +100,14 @@
       margin-bottom: 0;
     }
 
-    .cover-section-nav a {
+    .cover-section-nav a,
+    .nav-link {
       display: flex;
       align-items: center;
       gap: 10px;
       color: rgba(255,255,255,0.7);
       text-decoration: none;
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 600;
       padding: 7px 0;
       border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -119,11 +120,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 20px;
-      height: 20px;
+      width: 26px;
+      height: 26px;
       border-radius: 50%;
       background: rgba(255,255,255,0.1);
-      font-size: 10px;
+      font-size: 16px;
       font-weight: 800;
       flex-shrink: 0;
     }
@@ -141,14 +142,14 @@
     .cover-instructor { /* no extra margin — gap handles spacing */ }
 
     .cover-instructor-name {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--navy);
       margin-bottom: 2px;
     }
 
     .cover-instructor-title {
-      font-size: 12px;
+      font-size: 16px;
       color: var(--text-muted);
       margin-bottom: 0;
     }
@@ -169,7 +170,7 @@
     }
 
     .cover-info-card .card-label {
-      font-size: 10px;
+      font-size: 16px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -178,14 +179,14 @@
     }
 
     .cover-info-card .card-value {
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 600;
       color: var(--navy);
       line-height: 1.4;
     }
 
     .cover-info-card .card-sub {
-      font-size: 11px;
+      font-size: 16px;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -203,7 +204,7 @@
       padding: 9px 14px;
       background: #ffffff;
       color: #176873;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
       border-bottom: 1px solid rgba(23,104,115,0.25);
     }
@@ -214,7 +215,7 @@
     }
 
     .cover-intro-bio p {
-      font-size: 12px;
+      font-size: 16px;
       color: var(--text);
       line-height: 1.5;
       margin-bottom: 7px;
@@ -237,7 +238,7 @@
     .sticky-nav a {
       color: rgba(255,255,255,0.8);
       text-decoration: none;
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 600;
       padding: 10px 16px;
       transition: background 0.15s, color 0.15s;
@@ -271,7 +272,7 @@
       border-radius: 50%;
       background: var(--orange);
       color: var(--white);
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -279,7 +280,7 @@
     }
 
     .section-header h2 {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--navy);
       margin: 0;
@@ -288,17 +289,17 @@
     }
 
     h3 {
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--navy);
       margin: 22px 0 8px;
     }
 
-    p { margin-bottom: 12px; font-size: 14px; }
+    p { margin-bottom: 12px; font-size: 16px; }
     p:last-child { margin-bottom: 0; }
 
     ul, ol {
-      font-size: 14px;
+      font-size: 16px;
       padding-left: 22px;
       margin-bottom: 12px;
     }
@@ -306,13 +307,15 @@
     li { margin-bottom: 5px; }
 
     a { color: var(--navy); }
+    /* Override for nav links — must come after the general a rule so the inliner applies it last */
+    .nav-link { color: rgba(255,255,255,0.7); }
 
     /* ---- Info boxes ---- */
     .box {
       border-radius: 6px;
       padding: 16px 20px;
       margin: 16px 0;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .box-orange {
@@ -345,7 +348,7 @@
       border-radius: 8px;
       padding: 20px 24px;
       margin: 20px 0;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 600;
       line-height: 1.5;
       text-align: center;
@@ -359,7 +362,7 @@
       border-radius: 6px;
       overflow: hidden;
       margin: 12px 0 20px;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     .grade-grid-row {
@@ -389,7 +392,7 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
+      font-size: 16px;
       margin: 12px 0;
     }
 
@@ -399,7 +402,7 @@
       padding: 10px 12px;
       text-align: left;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 16px;
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -428,11 +431,11 @@
     .use-block {
       border-radius: 6px;
       padding: 16px;
-      font-size: 13px;
+      font-size: 16px;
     }
 
     .use-block h4 {
-      font-size: 12px;
+      font-size: 16px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -460,7 +463,7 @@
       color: var(--white);
       padding: 6px 16px;
       border-radius: 20px;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
     }
 
@@ -471,41 +474,19 @@
       padding: 16px 20px;
       margin: 16px 0;
       background: var(--orange-light);
-      font-size: 13px;
+      font-size: 16px;
       color: #7a3000;
     }
 
     .placeholder::before {
       content: "✏️ TO ADD: ";
       font-weight: 800;
-      font-size: 11px;
+      font-size: 16px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       display: block;
       margin-bottom: 6px;
     }
-
-    /* ---- Print button ---- */
-    .print-btn-wrap {
-      text-align: center;
-      padding: 24px;
-      background: var(--gray-bg);
-      border-bottom: 1px solid var(--gray-border);
-    }
-
-    .print-btn {
-      background: var(--orange);
-      color: var(--white);
-      border: none;
-      padding: 12px 28px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-family: var(--font);
-    }
-
-    .print-btn:hover { background: #b34a00; }
 
     /* ---- Overview two-column (flex — WeasyPrint-safe) ---- */
     .overview-cols {
@@ -542,7 +523,7 @@
       display: flex;
       flex-direction: column;
       gap: 9px;
-      font-size: 13px;
+      font-size: 16px;
     }
 
     .legend-item {
@@ -578,14 +559,14 @@
 
     .acard-title {
       padding: 10px 14px 8px;
-      font-size: 13px;
+      font-size: 16px;
       font-weight: 700;
       background: #fff;
       line-height: 1.35;
     }
 
     .acard-pts {
-      font-size: 11px;
+      font-size: 16px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -596,7 +577,7 @@
 
     .acard-body {
       padding: 10px 14px;
-      font-size: 13px;
+      font-size: 16px;
       line-height: 1.55;
       border-top: 1px solid rgba(0,0,0,0.08);
     }
@@ -613,12 +594,12 @@
 
     .cover-intro h3 {
       color: #176873;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 800;
       margin: 0 0 10px;
     }
 
-    .cover-intro p { font-size: 14px; margin-bottom: 8px; }
+    .cover-intro p { font-size: 16px; margin-bottom: 8px; }
     .cover-intro p:last-child { margin-bottom: 0; }
 
     /* ---- Teaching Philosophy card (light teal) ---- */
@@ -635,7 +616,7 @@
       padding: 10px 18px;
       background: #ffffff;
       color: #176873;
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
       border-bottom: 1px solid rgba(23,104,115,0.25);
     }
@@ -645,7 +626,7 @@
       padding: 18px 20px;
     }
 
-    .philosophy-card-body p { font-size: 14px; margin-bottom: 10px; }
+    .philosophy-card-body p { font-size: 16px; margin-bottom: 10px; }
     .philosophy-card-body p:last-child { margin-bottom: 0; }
 
     /* ---- Accessibility warning callout ---- */
@@ -655,7 +636,7 @@
       border-radius: 8px;
       padding: 14px 20px;
       margin: 16px 0;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 600;
       line-height: 1.55;
     }
@@ -667,120 +648,211 @@
     /* ---- Page size (WeasyPrint + browser print) ---- */
     @page {
       size: letter;
-      margin: 0.65in;
+      margin: 0.4in;
     }
 
     /* =====================================================
        PRINT / PDF STYLES
-       Use File → Print → Save as PDF in your browser.
-       Chrome gives the best results.
+       Generated via: python3 scripts/generate_syllabus_pdf.py
+       (WeasyPrint — no browser headers, proper page breaks)
        ===================================================== */
     @media print {
-      body { background: white; font-size: 11pt; }
+      body { background: white; font-size: 9pt; line-height: 1.4; }
       .page { box-shadow: none; max-width: 100%; width: 100%; }
-      .sticky-nav,
-      .print-btn-wrap { display: none !important; }
 
+      /* Hide web-only elements */
+      .sticky-nav { display: none !important; }
+
+      /* ---- Cover: own page, keep two-column flex ---- */
       .cover {
-        padding: 36px 48px 32px;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        display: flex;
+        min-height: 0;
+        break-after: page;
+        page-break-after: always;
       }
 
-      .section { padding: 28px 48px; }
-
-      /* Page breaks before major sections */
-      .section { page-break-inside: avoid; }
-      #grades, #schedule, #policies, #ai, #accessibility {
+      /* ---- Sections: every section starts on its own page ---- */
+      .section {
+        padding: 16px 36px;
+        break-before: page;
         page-break-before: always;
       }
+      .section-header { margin-bottom: 12px; }
 
-      .grade-grid, table, .two-col {
+      h3 { margin: 12px 0 5px; font-size: 11pt; }
+      p  { margin-bottom: 8px; font-size: 9pt; }
+      ul, ol { font-size: 9pt; margin-bottom: 8px; }
+      li { margin-bottom: 3px; }
+
+      /* ---- Assessment cards: 3-per-row, compact ---- */
+      .assessment-cards { gap: 8px; margin: 6px 0 12px; }
+      .assessment-card  { flex: 1 1 calc(33.33% - 6px); }
+      .acard-title      { padding: 6px 10px 4px; font-size: 9pt; }
+      .acard-pts        { font-size: 8pt; margin-top: 1px; }
+      .acard-body       { padding: 6px 10px; font-size: 8.5pt; line-height: 1.4; }
+
+      /* ---- Grades chart: explicit flex for WeasyPrint, natural SVG size ---- */
+      .grades-chart-wrap {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+        margin: 10px 0 16px;
+        flex-wrap: nowrap;
+      }
+      .chart-legend { font-size: 9pt; gap: 5px; flex: 1; }
+
+      /* ---- Grade scale: single row of pills ---- */
+      .grade-scale {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 6px;
+        margin: 8px 0;
+      }
+      .grade-pill { padding: 4px 10px; font-size: 8.5pt; }
+
+      /* ---- Philosophy card: compact ---- */
+      .philosophy-card-body p { font-size: 9pt; margin-bottom: 6px; }
+      .philosophy-card-body   { padding: 10px 14px; }
+      .philosophy-card-title  { padding: 7px 14px; font-size: 11pt; }
+
+      /* ---- Boxes ---- */
+      .box { padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+      .callout { padding: 12px 16px; margin: 12px 0; font-size: 10pt; }
+      .callout-warning { padding: 8px 14px; margin: 10px 0; font-size: 9pt; }
+
+      /* ---- Cover info ---- */
+      .cover-right  { padding: 16px 24px 16px 20px; gap: 10px; }
+      .cover-left   { padding: 28px 20px 28px 28px; }
+      .cover-info-card { padding: 7px 10px; }
+
+      /* ---- Keep small blocks together, let cards flow freely ---- */
+      .box, .callout, .callout-warning, .placeholder,
+      .philosophy-card, .grade-scale, .grades-chart-wrap,
+      .two-col, .grade-grid, .use-block, .cover-info-card {
+        break-inside: avoid;
         page-break-inside: avoid;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
       }
 
+      /* ---- Tables ---- */
       thead { display: table-header-group; }
+      table { break-inside: auto; page-break-inside: auto; font-size: 9pt; }
+      tr    { break-inside: avoid; page-break-inside: avoid; }
+      thead th { padding: 7px 10px; }
+      tbody td  { padding: 6px 10px; }
 
-      .callout, .box, .placeholder {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+      /* ---- Two-col AI policy ---- */
+      .use-block { padding: 10px 12px; font-size: 8.5pt; }
+      .two-col   { gap: 10px; margin: 10px 0; }
 
       a { color: var(--navy); text-decoration: none; }
-      .jump-nav { display: none; }
     }
   </style>
 </head>
 <body>
+
 <div class="page">
 
   <!-- ============================================================
        COVER — two-column layout
        ============================================================ -->
+
   <div class="cover">
 
     <!-- Left panel: navy, title + section nav -->
+
     <div class="cover-left">
+
       <div class="cover-course-code">BIOL 1113 &nbsp;·&nbsp; Oklahoma State University</div>
+
       <h1>Introductory<br>Biology</h1>
+
       <div class="cover-semester">Fall 2026 &nbsp;·&nbsp; Concurrent Enrollment</div>
 
       <ul class="cover-section-nav">
-        <li><a href="#overview"><span class="nav-num">01</span>Course Overview</a></li>
-        <li><a href="#how-it-works"><span class="nav-num">02</span>How This Course Works</a></li>
-        <li><a href="#objectives"><span class="nav-num">03</span>Learning Objectives</a></li>
-        <li><a href="#grades"><span class="nav-num">04</span>Grades &amp; Assessment</a></li>
-        <li><a href="#schedule"><span class="nav-num">05</span>Course Schedule</a></li>
-        <li><a href="#policies"><span class="nav-num">06</span>Policies</a></li>
-        <li><a href="#ai"><span class="nav-num">07</span>AI Acceptable Use</a></li>
-        <li><a href="#accessibility"><span class="nav-num">08</span>Accessibility &amp; Support</a></li>
+        <li><a href="#overview" class="nav-link"><span class="nav-num">01</span>Course Overview</a></li>
+        <li><a href="#how-it-works" class="nav-link"><span class="nav-num">02</span>How This Course Works</a></li>
+        <li><a href="#objectives" class="nav-link"><span class="nav-num">03</span>Learning Objectives</a></li>
+        <li><a href="#grades" class="nav-link"><span class="nav-num">04</span>Grades &amp; Assessment</a></li>
+        <li><a href="#schedule" class="nav-link"><span class="nav-num">05</span>Course Schedule</a></li>
+        <li><a href="#policies" class="nav-link"><span class="nav-num">06</span>Policies</a></li>
+        <li><a href="#ai" class="nav-link"><span class="nav-num">07</span>AI Acceptable Use</a></li>
+        <li><a href="#accessibility" class="nav-link"><span class="nav-num">08</span>Accessibility &amp; Support</a></li>
       </ul>
+
     </div>
 
     <!-- Right panel: light background, instructor info cards -->
+
     <div class="cover-right">
+
       <div class="cover-instructor">
+
         <div class="cover-instructor-name">Dr. Jodie Wiggins</div>
+
         <div class="cover-instructor-title">Teaching Associate Professor · Department of Biology</div>
       </div>
 
       <div class="cover-info-grid">
+
         <div class="cover-info-card">
+
           <div class="card-label">Contact</div>
+
           <div class="card-value">jodie.wiggins@okstate.edu</div>
+
           <div class="card-sub">Biology Dept: (405) 744-5555</div>
         </div>
+
         <div class="cover-info-card">
+
           <div class="card-label">Format</div>
+
           <div class="card-value">Online · Asynchronous</div>
+
           <div class="card-sub">Exams via ProctorU or Testing Center</div>
         </div>
+
         <div class="cover-info-card">
+
           <div class="card-label">Virtual Office Hours</div>
-          <div class="card-value">TBD — see Zoom link on Canvas</div>
-          <div class="card-sub">Or schedule a meeting</div>
+
+          <div class="card-value">Tue 1:00&ndash;3:00 PM &middot; Fri 10:45&ndash;12:00 PM</div>
+
+          <div class="card-sub">Via Teams &mdash; book a time below</div>
         </div>
+
         <div class="cover-info-card">
+
           <div class="card-label">Credit Hours</div>
+
           <div class="card-value">3 Credit Hours</div>
+
           <div class="card-sub">Concurrent Enrollment</div>
         </div>
+
       </div>
 
       <div class="cover-intro-bio">
+
         <div class="bio-label">What is Introductory Biology?</div>
+
         <div class="bio-body">
+
           <p>Biology is the science of life — the study of everything from microscopic molecules to entire ecosystems. This course is designed to give you a strong foundation in the core concepts of biology so that you're ready to dive deeper into more advanced topics later in your college career. Along the way, you'll start to see how these concepts connect, giving you a greater appreciation for the complexity (and beauty!) of living systems.</p>
+
           <p>Our goals are simple: to help you build confidence as a scientist, to give you the tools you'll need for future courses, and — most importantly — to spark your curiosity. Biology is full of fascinating questions, and we hope this course helps you discover the excitement of exploring them.</p>
         </div>
+
       </div>
+
     </div>
 
   </div>
 
   <!-- Sticky nav (visible while scrolling) -->
+
   <nav class="sticky-nav" aria-hidden="true">
     <a href="#overview">Overview</a>
     <a href="#how-it-works">How It Works</a>
@@ -792,62 +864,81 @@
     <a href="#accessibility">Accessibility</a>
   </nav>
 
-  <!-- Print / PDF button -->
-  <div class="print-btn-wrap">
-    <button class="print-btn" onclick="window.print()">⬇ Download as PDF</button>
-  </div>
-
   <!-- ============================================================
        01 — COURSE OVERVIEW
        ============================================================ -->
+
   <div class="section" id="overview">
+
     <div class="section-header">
+
       <div class="section-number">01</div>
+
       <h2>Course Overview</h2>
     </div>
 
     <!-- Two columns: Course Format + Instructor title (left) | Communication (right) -->
+
     <div class="overview-cols">
 
       <div>
+
         <h3 style="margin-top:0">Course Format</h3>
+
         <p>This course is taught online via asynchronous instruction through the course Canvas page, with exams taken via <a href="https://itle.okstate.edu/online-test-proctoring" target="_blank">Measure Learning/ProctorU</a> or scheduled by you at a registered testing center.</p>
 
         <h3>What to Call Your Instructor</h3>
+
         <p>At the college level, particularly in the biological sciences, your instructors all have terminal degrees (the highest possible degree in our field: Ph.D.). It is appropriate to call us <em>Dr.</em> or <em>Professor.</em> You may call me Dr. Wiggins or Professor Wiggins. <a href="https://www.britannica.com/science/Doctor-of-Medicine#:~:text=CITE-,doctor,-academic%20degree" target="_blank">History of the title &#8220;doctor&#8221;</a></p>
       </div>
 
       <div>
+
         <h3 style="margin-top:0">Communication</h3>
+
         <div class="box box-blue">
           <strong>Your success is important.</strong>
-          Please do not hesitate to contact me at any time — I am here to help! The best way to reach me is through email at <a href="mailto:jodie.wiggins@okstate.edu">jodie.wiggins@okstate.edu</a>. I respond to all emails within 24 hours in most cases. I do not respond to messages after 5 PM or on weekends. You can also visit virtual office hours (see Zoom link on Canvas) or schedule a face-to-face meeting.
+          Please do not hesitate to contact me at any time — I am here to help! The best way to reach me is through email at <a href="mailto:jodie.wiggins@okstate.edu">jodie.wiggins@okstate.edu</a>. I respond to all emails within 24 hours in most cases. I do not respond to messages after 5 PM or on weekends. You can also visit virtual office hours (see Office Hours below for the schedule and booking link) or schedule an individual meeting.
         </div>
+
       </div>
 
     </div><!-- /overview-cols -->
 
     <div class="philosophy-card">
+
       <div class="philosophy-card-title">My Teaching Philosophy</div>
+
       <div class="philosophy-card-body">
+
         <p>My teaching philosophy for concurrent enrollment courses centers on the idea that carefully designed learning materials can create a rigorous, engaging, and equitable learning environment even when students interact with the content outside of a traditional university classroom.</p>
+
         <p>Instructional videos are typically short — generally under ten minutes — to support attention and reduce unnecessary cognitive load. Each video is accompanied by clear guidance about what students should focus on while watching. By explicitly identifying the key ideas or questions students should be considering, I help direct attention toward the most important conceptual relationships rather than passive viewing.</p>
+
         <p>Assigned readings are organized around specific topics rather than traditional textbook chapters, allowing students to focus on the most relevant concepts. This approach reflects my broader view of learning as an active cognitive process. Students develop durable understanding when they revisit challenging ideas, make connections across topics, and apply biological principles to new situations.</p>
+
         <p>Ultimately, my goal is to create a learning environment that maintains the rigor and expectations of a university biology class while providing students with the structure and clarity needed to engage deeply with the material.</p>
       </div>
+
     </div>
+
   </div>
 
   <!-- ============================================================
        02 — HOW THIS COURSE WORKS
        ============================================================ -->
+
   <div class="section" id="how-it-works">
+
     <div class="section-header">
+
       <div class="section-number">02</div>
+
       <h2>How This Course Works</h2>
     </div>
 
     <h3>Canvas &amp; Weekly Modules</h3>
+
     <div class="box box-orange">
       <strong>Log in to Canvas every Monday morning.</strong>
       Each week a new module will become accessible on Monday morning. It will include all of your assignments for the week: lecture videos, readings, and sometimes additional media such as podcasts. Assignments are open from Monday morning through Sunday at 11:59 PM — six days to complete them. They will not be reopened.
@@ -856,10 +947,13 @@
     <p>Make sure your preferred email is set up in Canvas so you receive notifications. Resources to help you get started with Canvas include the <a href="https://osuonline.okstate.edu/canvas-student-videos.html" target="_blank">Student Canvas Videos</a> and the <a href="https://canvas.okstate.edu/enroll/MNLEMT?wrap=1" target="_blank">Passport to Canvas</a> learning modules.</p>
 
     <h3>Required Materials</h3>
+
     <p>This course uses Open Educational Resources (OERs) — there is no textbook to purchase. Our primary text is the freely available online <a href="https://openstax.org/details/books/biology-2e" target="_blank"><strong>OpenStax Biology 2e</strong></a>. Reading assignments will be linked either to this book or other freely available resources as appropriate.</p>
 
     <h3>Regular Substantive Interaction</h3>
+
     <p>To meet federal requirements for online courses and to ensure you have meaningful access to your instructor throughout the semester, I am committed to the following:</p>
+
     <ul>
       <li>Responding to student communication within 24 hours (excepting weekends)</li>
       <li>Holding regular, consistent virtual office hours</li>
@@ -869,14 +963,19 @@
     <div class="placeholder">
       Meet &amp; Greet Virtual Meeting — Students will be required to schedule a brief virtual meeting with Dr. Wiggins during the first two weeks of the semester. Details about scheduling, format, and how this counts toward RSI requirements will be added here. [Add specific instructions, scheduling link, and any grading/participation implications before the course opens.]
     </div>
+
   </div>
 
   <!-- ============================================================
        03 — LEARNING OBJECTIVES
        ============================================================ -->
+
   <div class="section" id="objectives">
+
     <div class="section-header">
+
       <div class="section-number">03</div>
+
       <h2>Learning Objectives</h2>
     </div>
 
@@ -894,231 +993,367 @@
       <li><strong>Analyze how organisms interact with one another and with their environment</strong> so that they can interpret population dynamics, ecological relationships, and ecosystem stability.</li>
       <li><strong>Evaluate how human activities influence biological systems</strong> so that they can understand how actions such as habitat modification, resource use, and technological innovation affect ecosystems and global biological processes.</li>
     </ol>
+
   </div>
 
   <!-- ============================================================
        04 — GRADES & ASSESSMENT
        ============================================================ -->
+
   <div class="section" id="grades">
+
     <div class="section-header">
+
       <div class="section-number">04</div>
+
       <h2>Grades &amp; Assessment</h2>
     </div>
 
-    <!-- Donut chart + legend (static SVG — no JS required) -->
+    <div class="box box-blue">
+      <strong>How grading works in this course.</strong>
+      There are more points available than you need to earn any grade. Most categories have built-in flexibility — your lowest scores are automatically dropped so that a hard week doesn't define your semester. All three tests and the final exam are required. Everything else gives you choices about how you earn your points.
+    </div>
+
+    <!-- Donut chart + legend.
+
+         IMAGE, NOT INLINE SVG: Canvas's syllabus_body field strips <svg>
+         elements entirely (it does not strip them from wiki pages, but it
+         does from this specific field), so the chart has to ship as a
+         rendered PNG instead. The image src below is a placeholder token
+         (see canvas_targets.py's chart_image_url) resolved per Canvas
+         course at build time, since the image is hosted as a Canvas file
+         and each course gets its own copy/URL.
+
+         To regenerate this image after changing the numbers below, edit
+         the source SVG markup (kept in scripts/chart_source.svg — the
+         single source of truth for the chart), then re-render it to a PNG
+         and re-upload it per target; see docs/MODULE-STANDARDS.md. -->
+
     <div class="grades-chart-wrap">
-      <svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0" aria-label="Grade breakdown donut chart">
-        <!-- Slices -->
-        <path d="M130.00,16.00 A114,114,0,0,1,165.23,238.42 L146.69,181.36 A54,54,0,0,0,130.00,76.00Z" fill="#2c6fad" stroke="white" stroke-width="2.5"/>
-        <path d="M165.23,238.42 A114,114,0,0,1,37.77,197.01 L86.31,161.74 A54,54,0,0,0,146.69,181.36Z" fill="#7d3c98" stroke="white" stroke-width="2.5"/>
-        <path d="M37.77,197.01 A114,114,0,0,1,21.58,94.77 L78.64,113.31 A54,54,0,0,0,86.31,161.74Z" fill="#17a589" stroke="white" stroke-width="2.5"/>
-        <path d="M21.58,94.77 A114,114,0,0,1,62.99,37.77 L98.26,86.31 A54,54,0,0,0,78.64,113.31Z" fill="#d35400" stroke="white" stroke-width="2.5"/>
-        <path d="M62.99,37.77 A114,114,0,0,1,130.00,16.00 L130.00,76.00 A54,54,0,0,0,98.26,86.31Z" fill="#c0392b" stroke="white" stroke-width="2.5"/>
-        <!-- Percentage labels -->
-        <text x="213.0" y="116.9" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">45%</text>
-        <text x="104.0" y="209.9" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">20%</text>
-        <text x="47.0"  y="143.1" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="13" font-family="-apple-system,sans-serif">15%</text>
-        <text x="62.0"  y="80.6"  text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">10%</text>
-        <text x="104.0" y="50.1"  text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">10%</text>
-        <!-- Donut hole -->
-        <circle cx="130" cy="130" r="54" fill="white"/>
-        <!-- Center label -->
-        <text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#176873" font-weight="bold" font-size="20" font-family="-apple-system,sans-serif">1000</text>
-        <text x="130" y="141" text-anchor="middle" dominant-baseline="middle" fill="#57606a" font-size="11" font-family="-apple-system,sans-serif">total pts</text>
-      </svg>
+      <img src="{{CHART_IMAGE_URL}}" width="260" height="260" alt="Donut chart of grade breakdown: Tests 1, 2 and 3 27%, Final Exam 13%, Blog Posts 20%, Blog Comments 10%, Learning Notes 21%, Take-Home HW 9%, totaling 1,126 points available" style="flex-shrink:0" />
 
       <div class="chart-legend">
-        <div class="legend-item"><span class="legend-swatch" style="background:#2c6fad"></span><span><strong>Tests 1, 2 &amp; 3</strong> &mdash; 450&thinsp;pts (45%)</span></div>
-        <div class="legend-item"><span class="legend-swatch" style="background:#7d3c98"></span><span><strong>Final Exam</strong> &mdash; 200&thinsp;pts (20%)</span></div>
-        <div class="legend-item"><span class="legend-swatch" style="background:#17a589"></span><span><strong>ELQs</strong> &mdash; 150&thinsp;pts (15%)</span></div>
-        <div class="legend-item"><span class="legend-swatch" style="background:#d35400"></span><span><strong>Take-Home HW</strong> &mdash; 100&thinsp;pts (10%)</span></div>
-        <div class="legend-item"><span class="legend-swatch" style="background:#c0392b"></span><span><strong>Writing Assignments</strong> &mdash; 100&thinsp;pts (10%)</span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#2c6fad"></span><span><strong>Tests 1, 2 &amp; 3</strong> &mdash; 300&thinsp;pts &middot; <em>required</em></span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#7d3c98"></span><span><strong>Final Exam</strong> &mdash; 150&thinsp;pts &middot; <em>required</em></span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#17a589"></span><span><strong>Blog Posts</strong> &mdash; 224&thinsp;pts &middot; best 10 of 14</span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#e67e22"></span><span><strong>Blog Comments</strong> &mdash; 112&thinsp;pts &middot; best 10 of 14</span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#d35400"></span><span><strong>Learning Notes</strong> &mdash; 240&thinsp;pts &middot; best 11 of 15</span></div>
+
+        <div class="legend-item"><span class="legend-swatch" style="background:#c0392b"></span><span><strong>Take-Home HW</strong> &mdash; 100&thinsp;pts &middot; <em>optional</em></span></div>
       </div>
+
     </div>
 
     <!-- Assessment cards -->
+
     <div class="assessment-cards">
 
       <div class="assessment-card" style="border-color:#2c6fad">
+
         <div class="acard-title" style="color:#2c6fad">Tests 1, 2 &amp; 3
-          <span class="acard-pts" style="color:#2c6fad">450 pts &nbsp;&middot;&nbsp; 45%</span>
+          <span class="acard-pts" style="color:#2c6fad">300 pts available &nbsp;&middot;&nbsp; all required</span>
         </div>
-        <div class="acard-body" style="background:#ddeaf8">Three exams, each worth 150 points. Taken via <strong>Measure Learning / ProctorU</strong> or at a certified testing center — self-scheduled within the test window. If you miss a test, notify Dr. Wiggins within 48 hours; your Final Exam grade may substitute for one missed test.</div>
+
+        <div class="acard-body" style="background:#ddeaf8">Three exams, each worth 100 points. Taken via <strong>Measure Learning / ProctorU</strong> or at a certified testing center — self-scheduled within the test window. All three tests must be completed to pass the course.</div>
       </div>
 
       <div class="assessment-card" style="border-color:#7d3c98">
+
         <div class="acard-title" style="color:#7d3c98">Final Exam
-          <span class="acard-pts" style="color:#7d3c98">200 pts &nbsp;&middot;&nbsp; 20%</span>
+          <span class="acard-pts" style="color:#7d3c98">150 pts &nbsp;&middot;&nbsp; required</span>
         </div>
+
         <div class="acard-body" style="background:#ecdff5">Comprehensive exam covering all 15 weeks of course content. Taken during finals week via Measure Learning / ProctorU or at a certified testing center.</div>
       </div>
 
       <div class="assessment-card" style="border-color:#17a589">
-        <div class="acard-title" style="color:#17a589">ELQs
-          <span class="acard-pts" style="color:#17a589">150 pts &nbsp;&middot;&nbsp; 15%</span>
+
+        <div class="acard-title" style="color:#17a589">Blog Posts
+          <span class="acard-pts" style="color:#17a589">224 pts available &nbsp;&middot;&nbsp; need to earn 168 &nbsp;&middot;&nbsp; best 10 of 14 count</span>
         </div>
-        <div class="acard-body" style="background:#d1f2eb">Short questions embedded directly in each video lesson. Designed to focus your attention on key concepts as you watch. ELQs may be retaken an unlimited number of times before the weekly due date. <em>Material without an ELQ can still appear on exams.</em></div>
+
+        <div class="acard-body" style="background:#d1f2eb">Weekly posts responding to the prior week's content — 14 opportunities across weeks 2–15, worth 16 points each (224 points total). Your four lowest scores are automatically dropped. Posts must be in your own voice, all content must be your own creation (including images), uploaded to your blog with your declaration submitted by Sunday at 11:59 PM.</div>
+      </div>
+
+      <div class="assessment-card" style="border-color:#e67e22">
+
+        <div class="acard-title" style="color:#e67e22">Blog Comments
+          <span class="acard-pts" style="color:#e67e22">112 pts available &nbsp;&middot;&nbsp; need to earn 80 &nbsp;&middot;&nbsp; best 10 of 14 count</span>
+        </div>
+
+        <div class="acard-body" style="background:#fdebd0">Comment on two classmates' blog posts each week following the provided instructions — 14 opportunities, worth 8 points each week (112 points total). Your four lowest scores are automatically dropped.</div>
       </div>
 
       <div class="assessment-card" style="border-color:#d35400">
-        <div class="acard-title" style="color:#d35400">Take-Home HW
-          <span class="acard-pts" style="color:#d35400">100 pts &nbsp;&middot;&nbsp; 10%</span>
+
+        <div class="acard-title" style="color:#d35400">Learning Notes
+          <span class="acard-pts" style="color:#d35400">240 pts available &nbsp;&middot;&nbsp; need to earn 176 &nbsp;&middot;&nbsp; best 11 of 15</span>
         </div>
-        <div class="acard-body" style="background:#fde8d0">Assignments designed to help you process the most challenging material. Specific details provided with each assignment. All work submitted through Canvas.</div>
+
+        <div class="acard-body" style="background:#fde8d0">At the end of every week, submit photos of your notes over all of that week's videos — 15 opportunities, worth 16 points each (240 points total). Use the structured template provided or your own format. Graded on completion, not on being "right" — notes must demonstrate a clear effort to correctly outline and document the learning materials thoroughly. Your four lowest weeks are automatically dropped.</div>
       </div>
 
       <div class="assessment-card" style="border-color:#c0392b">
-        <div class="acard-title" style="color:#c0392b">Writing Assignments
-          <span class="acard-pts" style="color:#c0392b">100 pts &nbsp;&middot;&nbsp; 10%</span>
+
+        <div class="acard-title" style="color:#c0392b">Take-Home HW
+          <span class="acard-pts" style="color:#c0392b">100 pts &nbsp;&middot;&nbsp; optional</span>
         </div>
-        <div class="acard-body" style="background:#fadbd8"><strong>Interpreting a Figure</strong> — Identify key components of a figure from a peer-reviewed article, including dependent and independent variables. <strong>Writing an Abstract</strong> — Write a scientific abstract based on a figure. All writing must be in your own voice.</div>
+
+        <div class="acard-body" style="background:#fadbd8">Assignments designed to help you process the most challenging material — strongly recommended. Completing homework gives you extra points in your bank and is one of the best ways to prepare for exams. Not required, but students who skip it consistently tend to feel the difference on tests.</div>
       </div>
 
     </div><!-- /assessment-cards -->
 
     <h3>Grade Scale</h3>
+
+    <p>Grades are based on total points earned out of 1,126 available. You do not need to earn all available points — the thresholds below reflect what you need.</p>
+
     <div class="grade-scale">
-      <div class="grade-pill">A ≥ 89.5%</div>
-      <div class="grade-pill">B ≥ 79.5%</div>
-      <div class="grade-pill">C ≥ 69.5%</div>
-      <div class="grade-pill">D ≥ 59.5%</div>
-      <div class="grade-pill">F &lt; 59.5%</div>
+
+      <div class="grade-pill">A &ge; 900 pts</div>
+
+      <div class="grade-pill">B &ge; 800 pts</div>
+
+      <div class="grade-pill">C &ge; 700 pts</div>
+
+      <div class="grade-pill">D &ge; 600 pts</div>
+
+      <div class="grade-pill">F &lt; 600 pts</div>
     </div>
+
     <p><em>Grades will not be bumped, altered, or otherwise changed. These are the grade cut-offs.</em></p>
+
+    <div class="box box-orange">
+      <strong>Canvas and Grades</strong>
+      These cut-offs are point totals, not percentages of the 1,126 available &mdash; there are more points available than any grade requires, on purpose. Canvas's built-in gradebook percentage struggles to reflect this correctly in a system with grade choice like this one, so use the grade calculation workbook provided in Important Links to check your standing rather than relying on the percentage Canvas shows.
+    </div>
 
   </div>
 
   <!-- ============================================================
        05 — COURSE SCHEDULE
        ============================================================ -->
+
   <div class="section" id="schedule">
+
     <div class="section-header">
+
       <div class="section-number">05</div>
+
       <h2>Course Schedule</h2>
     </div>
 
-    <p class="text-muted" style="font-size:13px; color:#57606a; margin-bottom:16px;">* Dates and topics may be adjusted with notification on Canvas or by email.</p>
+    <p class="text-muted" style="font-size:16px; color:#57606a; margin-bottom:16px;">* Dates and topics may be adjusted with notification on Canvas or by email.</p>
 
     <table>
+
       <thead>
+
         <tr>
+
           <th style="width:60px">Week</th>
+
           <th>Topic</th>
+
           <th style="width:120px">Notes</th>
         </tr>
+
       </thead>
+
       <tbody>
+
         <tr>
+
           <td class="week-num">1</td>
+
           <td>Learning and The Nature of Science</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">2</td>
-          <td>Biological Molecules and the Chemical Basis of Life</td>
+
+          <td>The Cell and Its Membrane</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">3</td>
-          <td>Cells and Biological Organization</td>
+
+          <td>How Cells Communicate</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">4</td>
-          <td>Biological Membranes and Cell Signaling</td>
+
+          <td>Transport and Communication in Action</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">5</td>
+
           <td>DNA and Genetic Variation</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">6</td>
+
           <td>Gene Expression</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">7</td>
+
           <td>Cell Division</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">8</td>
+
           <td>Inheritance</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">9</td>
+
           <td>Evolution and Natural Selection</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">10</td>
+
           <td>Population Genetics and Speciation</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">11</td>
+
           <td>Cellular Respiration</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">12</td>
+
           <td>Photosynthesis</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">13</td>
+
           <td>Biological Systems</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">14</td>
+
           <td>Ecosystems</td>
+
           <td></td>
         </tr>
+
         <tr>
+
           <td class="week-num">15</td>
+
           <td>Human Impacts on Biological Systems</td>
+
           <td></td>
         </tr>
+
         <tr class="finals-row">
+
           <td class="week-num">Finals</td>
+
           <td>Final Exam</td>
+
           <td>ProctorU or Testing Center</td>
         </tr>
+
       </tbody>
+
     </table>
 
-    <p style="margin-top:12px; font-size:13px; color:#57606a;">Test weeks (1, 2, and 3) will be noted on Canvas when dates are confirmed. Tests are self-scheduled and do not replace weekly content.</p>
+    <p style="margin-top:12px; font-size:16px; color:#57606a;">Test weeks (1, 2, and 3) will be noted on Canvas when dates are confirmed. Tests are self-scheduled and do not replace weekly content.</p>
   </div>
 
   <!-- ============================================================
        06 — POLICIES
        ============================================================ -->
+
   <div class="section" id="policies">
+
     <div class="section-header">
+
       <div class="section-number">06</div>
+
       <h2>Policies</h2>
     </div>
 
     <h3>Participation &amp; Canvas Engagement</h3>
+
     <p>For success in this course you need to learn how to use Canvas. Resources to help include the <a href="https://osuonline.okstate.edu/canvas-student-videos.html" target="_blank">Student Canvas Videos</a> and the <a href="https://canvas.okstate.edu/enroll/MNLEMT?wrap=1" target="_blank">Passport to Canvas</a> learning modules. You are expected to log in to Canvas on Monday morning each week.</p>
 
     <h3>Classroom and Online Etiquette</h3>
+
     <p>I am committed to creating a safe and respectful space for learning, teaching, and contributing. Instructors and students are expected to show respect and courtesy to others. All interactions should be courteous and professional regardless of platform — online or in-person.</p>
 
     <h3>Academic Integrity</h3>
+
     <div class="box box-orange">
       <strong>"Being a cowboy isn't in your clothes. It's in your character."</strong><br>
-      <em style="font-size:13px">— From the Cowboy Code</em>
+      <em style="font-size:16px">— From the Cowboy Code</em>
     </div>
+
     <p>Participating in a behavior that violates academic integrity (unauthorized collaboration, plagiarism, multiple submissions, cheating on examinations or major assignments, fabricating information, helping another person cheat, altering or destroying the work of others, and similar behaviors) will result in a sanction. Sanctions include receiving a failing grade on an assignment, examination, or for the course — which may include an F! on your transcript.</p>
+
     <p><a href="https://academicaffairs.okstate.edu/academic-integrity/index.html" target="_blank">Academic Integrity Policy — academicaffairs.okstate.edu</a></p>
 
     <h3>Learning How to Learn</h3>
+
     <p>We will spend time at the beginning of the course focusing on this topic. Below are a few resources:</p>
+
     <ul>
       <li>The <a href="https://success.okstate.edu/lasso-center/" target="_blank">OSU LASSO Center</a> provides tutoring and support in study strategies.</li>
       <li><em>Teach Yourself How to Learn</em> by Saundra Yancy McGuire (2018)</li>
@@ -1126,31 +1361,42 @@
     </ul>
 
     <h3>Basic Needs</h3>
+
     <p>Any student who has difficulty affording groceries or accessing sufficient food, or who lacks a safe and stable place to live, is urged to contact the <a href="mailto:vpsao@okstate.edu">Office of the Vice President for Student Affairs</a> for support.</p>
 
     <h3>Health &amp; Wellness</h3>
+
     <p>College can be stressful and affect your physical and mental health. Being in good health is important for your success. Please seek help from professional resources if you feel that your physical or mental health is suffering.</p>
+
     <ul>
       <li><a href="https://uhs.okstate.edu" target="_blank">University Health Services — uhs.okstate.edu</a></li>
       <li><a href="https://wellness.okstate.edu/student-wellness/resources.html" target="_blank">Mental Health Resources — wellness.okstate.edu</a></li>
       <li><a href="https://timelycare.com/okstate" target="_blank">TimelyCare — 24/7 counseling, peer support, and health coaching at no cost</a></li>
     </ul>
+
   </div>
 
   <!-- ============================================================
        07 — AI ACCEPTABLE USE
        ============================================================ -->
+
   <div class="section" id="ai">
+
     <div class="section-header">
+
       <div class="section-number">07</div>
+
       <h2>AI Acceptable Use</h2>
     </div>
 
     <p>Artificial intelligence (AI) tools (e.g., ChatGPT, Gemini, Claude, Copilot, etc.) may be used only as a learning aid to support your understanding of biology concepts. All homework and writing assignments must be completed independently and in your own voice.</p>
 
     <div class="two-col">
+
       <div class="use-block permitted">
+
         <h4>✓ Permitted Uses</h4>
+
         <ul>
           <li>Explore or review general biology concepts covered in lecture, readings, or prior coursework</li>
           <li>Ask for alternative explanations, analogies, or summaries of topics</li>
@@ -1158,19 +1404,26 @@
           <li>Create practice higher-order thinking test questions</li>
           <li>Help plan how to study or approach learning the material (not how to answer a specific question)</li>
         </ul>
+
       </div>
+
       <div class="use-block prohibited">
+
         <h4>✗ Prohibited Uses</h4>
+
         <ul>
           <li>Answer, solve, or complete any homework question, in whole or in part</li>
           <li>Paste, upload, paraphrase, or submit any homework prompt, question, dataset, figure, or scenario into an AI tool</li>
           <li>Use AI to generate explanations, calculations, or written responses that directly address a homework question or writing assignment</li>
           <li>Use AI-generated language, reasoning, or structure as a template for your answers, even if you rewrite it</li>
         </ul>
+
       </div>
+
     </div>
 
     <h3>"In Your Own Voice" Requirement</h3>
+
     <p>All homework responses and writing assignments must be written in your own voice, reflecting your personal understanding of the material. Your voice should sound like a college freshman. You must be able to explain and defend your reasoning without reliance on external tools. Work that reflects AI-style phrasing, structure, or reasoning — rather than your own thinking — may be treated as unauthorized assistance.</p>
 
     <div class="callout">
@@ -1178,6 +1431,7 @@
     </div>
 
     <h3>Why This Policy Exists</h3>
+
     <p>Learning biology requires you to practice thinking through problems yourself. Homework and writing assignments are far less about getting the correct answer than about developing your ability to reason, explain biological processes, and apply concepts in your own words. If an AI tool does the thinking, structuring, or explaining for you, then you are not doing the learning. This policy exists to ensure that assignments support real understanding, prepare you for exams and future courses, and reflect your own developing scientific voice.</p>
 
     <p>Use of AI beyond the limits described above constitutes unauthorized assistance and a violation of the academic integrity policy — including cases where AI use cannot be conclusively proven but submitted work shows strong evidence of external generation. If you are unsure whether a specific use is allowed, do not use it and ask <strong>before</strong> completing the assignment.</p>
@@ -1186,13 +1440,18 @@
   <!-- ============================================================
        08 — ACCESSIBILITY & SUPPORT
        ============================================================ -->
+
   <div class="section" id="accessibility">
+
     <div class="section-header">
+
       <div class="section-number">08</div>
+
       <h2>Accessibility &amp; Support</h2>
     </div>
 
     <h3>Student Accessibility Services</h3>
+
     <p>If you have a disability (e.g., learning disability, temporary or permanent physical condition) or even suspect you might — that requires accessibility services (e.g., extended testing time, particular testing needs) — please see <a href="https://accessibility.okstate.edu" target="_blank">Student Accessibility Services (accessibility.okstate.edu)</a>. They can instruct you regarding accommodations. <strong><em>It is then your responsibility to inform me of your needs</em></strong>, if you so desire. Please do this as early as possible so that I can make the necessary arrangements. I am legally bound to treat such information as confidential and will be happy to work with you.</p>
 
     <div class="callout-warning">
@@ -1200,7 +1459,8 @@
     </div>
 
     <h3>Virtual Office Hours</h3>
-    <p>Virtual office hours are held via Zoom — see Canvas for the link and schedule. You are also welcome to schedule an individual meeting. I am here to help; please do not hesitate to reach out.</p>
+
+    <p>Virtual office hours are held Tuesdays, 1:00&ndash;3:00 PM, and Fridays, 10:45 AM&ndash;12:00 PM. Schedule a virtual appointment during these times here: <a href="https://outlook.office.com/bookwithme/user/2f72a0441a6f485c825f06ccf5407b38@okstate.edu?anonymous&amp;ismsaljsauthenabled&amp;ep=pcard" target="_blank">Book time with Wiggins, Jodie</a>. Meetings will be via Teams. You are also welcome to schedule an individual meeting outside these times. I am here to help; please do not hesitate to reach out.</p>
 
     <div class="box box-green">
       <strong>The most important thing you can do: talk to me.</strong>
@@ -1208,6 +1468,7 @@
     </div>
 
     <h3>Additional Resources</h3>
+
     <ul>
       <li><strong>OSU LASSO Center</strong> — tutoring and academic support: <a href="https://success.okstate.edu/lasso-center/" target="_blank">success.okstate.edu/lasso-center</a></li>
       <li><strong>University Health Services</strong>: <a href="https://uhs.okstate.edu" target="_blank">uhs.okstate.edu</a></li>
@@ -1216,7 +1477,7 @@
       <li><strong>Vice President for Student Affairs</strong>: <a href="mailto:vpsao@okstate.edu">vpsao@okstate.edu</a></li>
     </ul>
 
-    <p style="margin-top: 20px; font-size: 13px; color: #57606a;">Please see the OSU syllabus attachment on Canvas for frequently asked questions related to courses at OSU.</p>
+    <p style="margin-top: 20px; font-size: 16px; color: #57606a;">Please see the OSU syllabus attachment on Canvas for frequently asked questions related to courses at OSU.</p>
   </div>
 
 </div><!-- end .page -->

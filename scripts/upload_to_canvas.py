@@ -2,23 +2,23 @@
 """
 upload_to_canvas.py — Upload built HTML pages to Canvas as wiki pages.
 
-Reads Canvas credentials from .env (never hardcoded).
-Uploads body-only HTML from build/biol1113/ to your Canvas course.
+Reads Canvas credentials from .env (never hardcoded); reads the target
+course's id/base_url from canvas_targets.py.
 
 Usage:
-  python3 scripts/upload_to_canvas.py              # upload all built pages
-  python3 scripts/upload_to_canvas.py week01/      # upload one week
-  python3 scripts/upload_to_canvas.py week01/overview.html  # upload one file
+  python3 scripts/upload_to_canvas.py sandbox              # upload all built pages
+  python3 scripts/upload_to_canvas.py sandbox week01/      # upload one week
+  python3 scripts/upload_to_canvas.py hybrid                # upload all hybrid pages
 
 Requirements:
-  - .env file in repo root with CANVAS_TOKEN, CANVAS_BASE_URL, CANVAS_COURSE_ID
-  - Run build/build.sh first to generate build/biol1113/ output
+  - .env file in repo root with CANVAS_TOKEN
+  - canvas_targets.py has the target's course_id/base_url filled in
+  - Run build/build.sh <target> first to generate build/biol1113-<target>/ output
 
 Requires Python 3.8+. Standard library only.
 """
 
 import sys
-import os
 import json
 import re
 import urllib.request
@@ -26,7 +26,8 @@ import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
-BUILD_DIR = ROOT / "build" / "biol1113"
+sys.path.insert(0, str(ROOT))
+from canvas_targets import get_target
 
 # ---------------------------------------------------------------------------
 # Load .env
@@ -50,14 +51,13 @@ def load_env():
     return env
 
 
-def get_config():
+def get_token():
     env = load_env()
-    required = ['CANVAS_TOKEN', 'CANVAS_BASE_URL', 'CANVAS_COURSE_ID']
-    missing = [k for k in required if not env.get(k) or 'your_' in env.get(k, '')]
-    if missing:
-        print(f"Error: Missing or unfilled values in .env: {', '.join(missing)}")
+    token = env.get('CANVAS_TOKEN')
+    if not token or 'your_' in token:
+        print("Error: CANVAS_TOKEN missing or unfilled in .env")
         sys.exit(1)
-    return env
+    return token
 
 
 # ---------------------------------------------------------------------------
@@ -83,36 +83,36 @@ def canvas_request(method, path, token, base_url, data=None):
         raise
 
 
-def page_slug_from_path(html_path):
+def page_slug_from_path(html_path, build_dir):
     """
     Derive a Canvas page URL slug from the file path.
-    e.g. week01/overview.html → biol1113-week01-overview
+    e.g. week01/week.html → week01-week
+         homepage.html    → homepage
     """
-    rel = Path(html_path).relative_to(BUILD_DIR)
+    rel = Path(html_path).relative_to(build_dir)
     parts = list(rel.parts)
-    # Remove .html extension from last part
     parts[-1] = parts[-1].replace('.html', '')
-    slug = 'biol1113-' + '-'.join(parts)
-    # Canvas slugs: lowercase, hyphens only
+    slug = '-'.join(parts)
     slug = re.sub(r'[^a-z0-9-]', '-', slug.lower())
     slug = re.sub(r'-+', '-', slug).strip('-')
     return slug
 
 
-def page_title_from_path(html_path):
+def page_title_from_path(html_path, build_dir):
     """Derive a human-readable title from the file path."""
-    rel = Path(html_path).relative_to(BUILD_DIR)
+    rel = Path(html_path).relative_to(build_dir)
     parts = list(rel.parts)
     parts[-1] = parts[-1].replace('.html', '')
+    # e.g. week01/week → Week 01 — Week
     return ' — '.join(p.replace('-', ' ').title() for p in parts)
 
 
-def upsert_page(html_path, token, base_url, course_id):
+def upsert_page(html_path, build_dir, token, base_url, course_id):
     """Create or update a Canvas wiki page from a built HTML file."""
     html_path = Path(html_path)
     body = html_path.read_text(encoding='utf-8')
-    slug = page_slug_from_path(html_path)
-    title = page_title_from_path(html_path)
+    slug = page_slug_from_path(html_path, build_dir)
+    title = page_title_from_path(html_path, build_dir)
 
     page_data = {
         'wiki_page': {
@@ -142,49 +142,99 @@ def upsert_page(html_path, token, base_url, course_id):
             )
             print(f"  [created] {slug}")
             return result
+        if e.code == 400:
+            # Front page cannot be set to unpublished — retry as published
+            page_data['wiki_page']['published'] = True
+            result = canvas_request(
+                'PUT',
+                f'courses/{course_id}/pages/{slug}',
+                token, base_url,
+                data=page_data
+            )
+            print(f"  [updated] {slug} (front page — kept published)")
+            return result
         raise
+
+
+def update_syllabus_body(syllabus_html_path, token, base_url, course_id):
+    """Push syllabus.html's built content into course.syllabus_body — the
+    field behind Canvas's native Syllabus tool (/courses/:id/assignments/
+    syllabus), which is a completely different thing from the syllabus wiki
+    page (/pages/syllabus) upsert_page() above pushes to. Both need to carry
+    the same content since the homepage links to the native tool."""
+    body = syllabus_html_path.read_text(encoding='utf-8')
+    canvas_request(
+        'PUT',
+        f'courses/{course_id}',
+        token, base_url,
+        data={'course': {'syllabus_body': body}}
+    )
+    print(f"  [updated] course syllabus_body (native Syllabus tool)")
 
 
 # ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
-def collect_built_files(target=None):
-    if not BUILD_DIR.exists():
-        print(f"Error: Build output not found at {BUILD_DIR}")
-        print("Run 'bash build/build.sh' first.")
+def collect_built_files(build_dir, subset=None):
+    if not build_dir.exists():
+        print(f"Error: Build output not found at {build_dir}")
+        print(f"Run 'bash build/build.sh <target>' first.")
         sys.exit(1)
 
-    if target is None:
-        return sorted(BUILD_DIR.rglob('*.html'))
+    # Upload: any root-level .html and weekNN/week.html — skip legacy shells
+    def is_uploadable(p):
+        if p.parent == build_dir and p.suffix == '.html':
+            return True
+        if p.name == 'week.html' and p.parent.name.startswith('week'):
+            return True
+        return False
+
+    if subset is None:
+        return sorted(f for f in build_dir.rglob('*.html') if is_uploadable(f))
     else:
-        p = BUILD_DIR / Path(target).relative_to(ROOT) if Path(target).is_absolute() else BUILD_DIR / target
+        p = build_dir / subset
         if p.is_dir():
-            return sorted(p.glob('*.html'))
+            return sorted(f for f in p.glob('*.html') if is_uploadable(f))
         elif p.suffix == '.html':
-            return [p]
+            return [p] if is_uploadable(p) else []
     return []
 
 
 def main():
-    config = get_config()
-    token = config['CANVAS_TOKEN']
-    base_url = config['CANVAS_BASE_URL']
-    course_id = config['CANVAS_COURSE_ID']
+    if len(sys.argv) < 2:
+        print("Usage: python3 scripts/upload_to_canvas.py <target> [file/folder]")
+        print("  target = sandbox, live, hybrid, etc. — see canvas_targets.py")
+        sys.exit(1)
 
-    target = sys.argv[1] if len(sys.argv) > 1 else None
-    files = collect_built_files(target)
+    target_name = sys.argv[1]
+    target_config = get_target(target_name)  # exits with a clear error if unknown/unconfigured
+    token = get_token()
+    base_url = target_config['base_url']
+    course_id = target_config['course_id']
+    build_dir = ROOT / "build" / f"biol1113-{target_name}"
+
+    raw_subset = sys.argv[2] if len(sys.argv) > 2 else None
+    files = collect_built_files(build_dir, raw_subset)
 
     if not files:
         print("No built HTML files found to upload.")
         sys.exit(0)
 
-    print(f"Uploading {len(files)} page(s) to Canvas course {course_id}...")
+    print(f"Uploading {len(files)} page(s) to Canvas course {course_id} (target: {target_name})...")
     print(f"Instance: {base_url}")
     print()
 
     for f in files:
-        upsert_page(f, token, base_url, course_id)
+        upsert_page(f, build_dir, token, base_url, course_id)
+
+    # If syllabus.html is part of what's being uploaded, also sync it into
+    # the native Syllabus tool's syllabus_body field (separate from the wiki
+    # page above) — only when it's actually in this run, so a single-week
+    # push doesn't touch it.
+    syllabus_file = build_dir / "syllabus.html"
+    if syllabus_file in files:
+        update_syllabus_body(syllabus_file, token, base_url, course_id)
 
     print(f"\nDone. {len(files)} page(s) uploaded as drafts.")
     print("Review and publish them in Canvas.")
