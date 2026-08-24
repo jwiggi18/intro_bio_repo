@@ -1,0 +1,133 @@
+<div class="page-wrap" style="max-width: 840px; margin: 0 auto">
+
+  <!-- Page Header start -->
+
+  <div class="page-header" id="page-header" style="border-bottom: 3px solid #b84800; margin-bottom: 28px; padding-bottom: 12px">
+
+    <div class="week-label" style="font-size: 18px; font-weight: 600; color: #b84800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px">BIOL 1113 &nbsp;·&nbsp; Course Resource</div>
+
+    <h1>Class Blog Directory</h1>
+
+    <p class="page-subtitle" style="font-size: 24px; color: #57606a; margin: 0 0 14px 0">Find your two assigned blogs for the week &nbsp;·&nbsp; Updated as URLs are submitted</p>
+
+  </div>
+
+  <!-- Page Header end -->
+
+
+  <!-- Blog Randomizer start -->
+
+  <h2 class="section-heading" id="blog-randomizer" style="font-size: 26px; font-weight: 700; color: #1a3a5c; border-bottom: none; padding-bottom: 6px; margin: 40px 0 20px 0; background: #d6e4ed; border-left: 6px solid #1a3a5c; border-radius: 0 6px 6px 0; padding: 13px 20px; letter-spacing: 0.01em">Get Your Blogs for This Week</h2>
+
+  <div class="assignment-block">
+
+    <h3 style="font-size: 22px; font-weight: 700; color: #1f2328; margin: 18px 0 8px 0">How this works</h3>
+
+    <p style="margin: 0 0 14px 0; font-size: 24px">Enter your blog URL below, then click the button. You'll be assigned two classmates' blogs to comment on this week.</p>
+
+    <p style="margin: 0 0 14px 0; font-size: 24px"><strong style="font-weight: 700">What to do:</strong> Click once and navigate to each blog. Check that each has a post from last week's content. If so, stick with those two blogs for the week. If one is missing last week's content, click again. Replace just that blog with one of the two new ones assigned, then stick with your final pair.</p>
+
+    <p style="margin: 0 0 14px 0; font-size: 24px">After commenting, confirm your comments in the weekly Canvas declaration quiz.</p>
+
+    <div style="margin: 20px 0;">
+      <label for="my-url" style="display: block; font-weight: 600; margin-bottom: 6px; color: var(--color-primary);">
+        Your blog URL:
+      </label>
+      <input
+        type="url"
+        id="my-url"
+        placeholder="https://yourblogname.wordpress.com"
+        style="
+          width: 100%;
+          max-width: 480px;
+          padding: 10px 12px;
+          font-size: 18px;
+          border: 1px solid var(--color-border);
+          border-radius: var(--radius);
+          box-sizing: border-box;
+          font-family: var(--font-stack);
+        "
+      >
+    </div>
+
+    <button
+      id="randomize-btn"
+      onclick="assignBlogs()"
+      style="
+        background: var(--color-accent);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-family: var(--font-stack);
+      "
+    >
+      Assign My Blogs for This Week
+    </button>
+
+    <div id="result" style="display: none; margin-top: 24px; padding: 20px; background: var(--color-success-bg); border: 2px solid var(--color-success-border); border-radius: var(--radius);">
+
+      <p style="font-weight: 700; color: var(--color-primary); margin: 0 0 14px 0; font-size: 24px">
+        Your blogs this week:
+      </p>
+
+      <div id="blog-1" style="margin-bottom: 12px; padding: 12px; background: white; border-radius: var(--radius); border: 1px solid var(--color-border);"></div>
+
+      <div id="blog-2" style="padding: 12px; background: white; border-radius: var(--radius); border: 1px solid var(--color-border);"></div>
+
+      <p style="margin: 0 0 14px 0; font-size: 24px; color: var(--color-text-muted)">
+        Write down or bookmark these two URLs. Leave a substantive comment (3–5+ sentences) on a post from this week on each blog, then confirm in the Canvas declaration quiz.
+      </p>
+
+    </div>
+
+    <div id="error-msg" style="display: none; margin-top: 16px; padding: 14px; background: #ffeef0; border: 1px solid #f97583; border-radius: var(--radius); color: #86181d;">
+    </div>
+
+  </div>
+
+  <!-- Blog Randomizer end -->
+
+
+  <!-- All Class Blogs start -->
+
+  <h2 class="section-heading" id="all-class-blogs" style="font-size: 26px; font-weight: 700; color: #1a3a5c; border-bottom: none; padding-bottom: 6px; margin: 40px 0 20px 0; background: #d6e4ed; border-left: 6px solid #1a3a5c; border-radius: 0 6px 6px 0; padding: 13px 20px; letter-spacing: 0.01em">All Class Blogs</h2>
+
+  <div class="assignment-block">
+
+    <p style="margin-top: 0; margin: 0 0 14px 0; font-size: 24px">Blogs are doing a lot of work in this course. Over many years of student blogging, one of the things I've noticed most consistently is how often students comment that something finally <em>clicked</em> after reading the way a classmate explained it. A different voice, a different analogy, a different angle. Suddenly it makes sense. The full list of class blogs is here for exactly that reason. You're welcome to read and comment on any classmate's blog at any time (following our commenting guidelines), but the two assigned above are the ones that count toward your grade this week.</p>
+
+    <p style="color: var(--color-text-muted); font-size: 24px; margin-bottom: 0; margin: 0 0 14px 0">
+      This list is updated as students submit their blog URLs. If your blog isn't listed yet, check back after your instructor confirms receipt.
+    </p>
+
+    <ul id="blog-list" style="padding-left: 1.4em; margin: 0;">
+
+      <!-- DR. WIGGINS: Add student blogs here as they are submitted.
+           Format: <li style="margin-bottom: 5px"><a href="URL" target="_blank" style="color: #b84800; text-decoration: underline">Name or Blog Title</a></li>
+           The randomizer reads from the BLOGS array in the script below.
+           Update BOTH this list AND the BLOGS array in the script. -->
+      <li style="margin-bottom: 5px"><em>Blogs will appear here as students submit their URLs.</em></li>
+    </ul>
+
+  </div>
+
+  <!-- All Class Blogs end -->
+
+</div>
+
+
+<strong style="font-weight: 700">Blog 1:</strong> <a href=\"" + pick1.url + "\" target=\"_blank\" style="color: #b84800; text-decoration: underline">" + pick1.name + "</a><br>" +
+      "<span style=\"font-size:18px; color: var(--color-text-muted);\">" + pick1.url + "</span>";
+
+    document.getElementById("blog-2").innerHTML =
+      "<strong style="font-weight: 700">Blog 2:</strong> <a href=\"" + pick2.url + "\" target=\"_blank\" style="color: #b84800; text-decoration: underline">" + pick2.name + "</a><br>" +
+      "<span style=\"font-size:18px; color: var(--color-text-muted);\">" + pick2.url + "</span>";
+
+    resultEl.style.display = "block";
+    resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+</script>

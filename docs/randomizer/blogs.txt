@@ -20,3 +20,15 @@
 # Example (delete the # to activate a real row, or just copy the format):
 # Alex's Biology Blog | https://alexbio.wordpress.com
 # Jordan | https://jordanscience.wordpress.com
+
+biol1113fall.wordpress.com | https://biol1113fall.wordpress.com
+biologyblogfall2026.wordpress.com | https://biologyblogfall2026.wordpress.com
+biologyfall26.wordpress.com | https://biologyfall26.wordpress.com
+okstatebio1113.wordpress.com | https://okstatebio1113.wordpress.com/
+concurrentbio26.wordpress.com | https://concurrentbio26.wordpress.com/
+biol1113scienceblog.wordpress.com | https://biol1113scienceblog.wordpress.com/
+okstatebiologyblogscience.wordpress.com | https://okstatebiologyblogscience.wordpress.com/
+biol1113fall20267.wordpress.com | https://biol1113fall20267.wordpress.com
+zachhergenrether-kgdpx.wordpress.com | https://zachhergenrether-kgdpx.wordpress.com
+okstatebiol1113scienceblog.wordpress.com | https://okstatebiol1113scienceblog.wordpress.com/
+biologyfa26.wordpress.com | https://biologyfa26.wordpress.com/

@@ -151,6 +151,15 @@ def selector_matches(selector, tag, classes, element_id):
     # Skip pseudo-class-only and @-rules
     if selector.startswith('@') or selector.startswith(':root'):
         return False
+    # Pseudo-ELEMENTS (::before, ::after, or the legacy single-colon form)
+    # generate content/styling that doesn't belong to the real element at
+    # all -- an inline style="" attribute has no way to express them, and
+    # naively stripping down to the base selector (like the pseudo-CLASS
+    # handling below does for :hover etc.) would leak their declarations
+    # (e.g. `content: "..."`) onto the actual element. Bail out entirely
+    # before the generic stripping gets a chance to do that.
+    if re.search(r':{1,2}(before|after|first-line|first-letter|placeholder|selection|marker)\b', selector):
+        return False
     if ':' in selector and not re.search(r'\[.*:.*\]', selector):
         selector = re.sub(r':[\w-]+(\([^)]*\))?', '', selector).strip()
         if not selector:
@@ -413,6 +422,92 @@ def resolve_placeholders(html_text, src_path, target_config):
             print(f"  [warn] {src_path.relative_to(ROOT)} — no chart_image_url set for this "
                   f"target; {{{{CHART_IMAGE_URL}}}} left UNRESOLVED (image will be broken). "
                   f"Run scripts/upload_chart_to_canvas.py against this target first.")
+
+    if "{{MULTIPAGE_PDF_URL}}" in html_text:
+        pdf_url = target_config.get("multipage_pdf_url")
+        if pdf_url:
+            html_text = html_text.replace("{{MULTIPAGE_PDF_URL}}", pdf_url)
+        else:
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no multipage_pdf_url set for this "
+                  f"target; {{{{MULTIPAGE_PDF_URL}}}} left UNRESOLVED (link will be broken). "
+                  f"Run scripts/upload_multipage_pdf_to_canvas.py against this target first.")
+
+    if "{{SYLLABUS_PDF_URL}}" in html_text:
+        syllabus_pdf_url = target_config.get("syllabus_pdf_url")
+        if syllabus_pdf_url:
+            html_text = html_text.replace("{{SYLLABUS_PDF_URL}}", syllabus_pdf_url)
+        else:
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no syllabus_pdf_url set for this "
+                  f"target; {{{{SYLLABUS_PDF_URL}}}} left UNRESOLVED (link will be broken). "
+                  f"Run scripts/upload_syllabus_pdf_to_canvas.py against this target first.")
+
+    if "{{BLOG_POST_URL}}" in html_text:
+        num = week_num_from_path(src_path)
+        assignment_id = target_config.get("blog_post_ids", {}).get(num) if num else None
+        if assignment_id:
+            url = f"{target_config['base_url'].rstrip('/')}/courses/{target_config['course_id']}/assignments/{assignment_id}"
+            html_text = html_text.replace("{{BLOG_POST_URL}}", url)
+        else:
+            html_text = html_text.replace(
+                '<li><a href="{{BLOG_POST_URL}}">Blog Post</a></li>',
+                '<li class="unlinked">Blog Post</li>'
+            )
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no Blog Post id for week {num} "
+                  f"in this target; left unlinked")
+
+    if "{{BLOG_COMMENT_URL}}" in html_text:
+        num = week_num_from_path(src_path)
+        assignment_id = target_config.get("blog_comment_ids", {}).get(num) if num else None
+        if assignment_id:
+            url = f"{target_config['base_url'].rstrip('/')}/courses/{target_config['course_id']}/assignments/{assignment_id}"
+            html_text = html_text.replace("{{BLOG_COMMENT_URL}}", url)
+        else:
+            html_text = html_text.replace(
+                '<li><a href="{{BLOG_COMMENT_URL}}">Blog Comment Declaration</a></li>',
+                '<li class="unlinked">Blog Comment Declaration</li>'
+            )
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no Blog Comment Declaration id for "
+                  f"week {num} in this target; left unlinked")
+
+    if "{{SLIDES_URL:" in html_text:
+        # Generic per-video placeholder: {{SLIDES_URL:<key>}}, where <key> is
+        # the source video's filename stem (see scripts/extract_video_slides.py
+        # output / scripts/upload_slides_to_canvas.py). One placeholder per
+        # video rather than per week, since a week can have several videos
+        # each with their own slide deck.
+        slides_urls = target_config.get("slides_urls", {})
+
+        def _resolve_slides_url(match):
+            key = match.group(1)
+            url = slides_urls.get(key)
+            if url:
+                return url
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no slides_url for '{key}' in this "
+                  f"target; {{{{SLIDES_URL:{key}}}}} left UNRESOLVED (link will be broken). "
+                  f"Run scripts/upload_slides_to_canvas.py against this target first.")
+            return match.group(0)
+
+        html_text = re.sub(r"\{\{SLIDES_URL:([A-Za-z0-9_-]+)\}\}", _resolve_slides_url, html_text)
+
+    if "{{NOTES_URL:" in html_text:
+        # Generic per-video placeholder for the guided Learning Notes .docx
+        # handout (scripts/upload_learning_notes_to_canvas.py output), same
+        # pattern as SLIDES_URL above -- one placeholder per video, keyed by
+        # the video's filename stem from video_transcripts/ (see
+        # 1.courses_taught/1.Intro_Bio/1.2026/learning_notes/).
+        notes_urls = target_config.get("notes_urls", {})
+
+        def _resolve_notes_url(match):
+            key = match.group(1)
+            url = notes_urls.get(key)
+            if url:
+                return url
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no notes_url for '{key}' in this "
+                  f"target; {{{{NOTES_URL:{key}}}}} left UNRESOLVED (link will be broken). "
+                  f"Run scripts/upload_learning_notes_to_canvas.py against this target first.")
+            return match.group(0)
+
+        html_text = re.sub(r"\{\{NOTES_URL:([A-Za-z0-9_-]+)\}\}", _resolve_notes_url, html_text)
 
     return html_text
 

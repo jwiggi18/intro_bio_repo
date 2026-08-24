@@ -102,7 +102,7 @@ All styles come from `course-styles.css`. Never write inline styles manually or 
 | Material label | `.material-label` | "View and engage with:" / "Read:" labels |
 | Sequence note | `.seq-note` | "Complete in order" note after Learning Materials h2 |
 | Video card | `.video-card` | Each video lesson |
-| Learning Notes marker | `.notes-label` / `.notes-text` | Inside every `.video-card`, in place of the retired focus questions — flags that this video's notes go in the week's Learning Notes assignment. Same wording every time: `<div class="notes-label">Learning Notes</div>` + `<p class="notes-text">Take notes as you watch — upload them with this week's Learning Notes assignment.</p>`. |
+| Learning Notes marker | `.notes-label` / `.notes-text` | Inside every `.video-card`, in place of the retired focus questions — flags that this video's notes go in the week's Learning Notes assignment. Wording every time: `Learning Notes <--- Download here` + `Take notes as you watch — upload them with this week's Learning Notes assignment.` Where a guided-notes handout exists for that video, the label is a link: `<a href="{{NOTES_URL:<key>}}" target="_blank">Learning Notes <--- Download here</a>` — same `{{NOTES_URL:<key>}}`/`canvas_targets.py`-per-target pattern as `{{SLIDES_URL:<key>}}` (see `scripts/upload_learning_notes_to_canvas.py`). A video with no guided-notes handout yet keeps the plain (unlinked) label. |
 | Reading card | `.reading-card` | Each reading assignment |
 | Assignment links | `.assignment-links` | Lean list of name → Canvas link, in the Assignments section |
 | Notice box | `.notice-box` | Optional/supplemental callouts, and the Week 1 Learning Notes reminder (see below) |

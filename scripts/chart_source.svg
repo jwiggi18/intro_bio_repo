@@ -1,0 +1,35 @@
+<svg width="260" height="260" viewBox="0 0 260 260" xmlns="http://www.w3.org/2000/svg" aria-label="Grade breakdown donut chart">
+
+  <!-- Slices -->
+
+  <!-- Tests 1-3 -->
+  <path d="M130.00,16.00 A114,114,0,0,1,243.39,141.75 L183.71,135.56 A54,54,0,0,0,130.00,76.00 Z" fill="#2c6fad" stroke="white" stroke-width="2.5"/>
+  <text x="192.4" y="73.7" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">27%</text>
+
+  <!-- Final Exam -->
+  <path d="M243.39,141.75 A114,114,0,0,1,197.21,222.08 L161.84,173.62 A54,54,0,0,0,183.71,135.56 Z" fill="#7d3c98" stroke="white" stroke-width="2.5"/>
+  <text x="202.8" y="171.9" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">13%</text>
+
+  <!-- Blog Posts -->
+  <path d="M197.21,222.08 A114,114,0,0,1,63.82,222.82 L98.65,173.97 A54,54,0,0,0,161.84,173.62 Z" fill="#17a589" stroke="white" stroke-width="2.5"/>
+  <text x="130.5" y="214.0" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">20%</text>
+
+  <!-- Blog Comments -->
+  <path d="M63.82,222.82 A114,114,0,0,1,22.02,166.56 L78.85,147.32 A54,54,0,0,0,98.65,173.97 Z" fill="#e67e22" stroke="white" stroke-width="2.5"/>
+  <text x="62.6" y="180.1" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">10%</text>
+
+  <!-- Learning Notes -->
+  <path d="M22.02,166.56 A114,114,0,0,1,69.64,33.29 L101.41,84.19 A54,54,0,0,0,78.85,147.32 Z" fill="#d35400" stroke="white" stroke-width="2.5"/>
+  <text x="50.9" y="101.7" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">21%</text>
+
+  <!-- Take-Home HW -->
+  <path d="M69.64,33.29 A114,114,0,0,1,130.00,16.00 L130.00,76.00 A54,54,0,0,0,101.41,84.19 Z" fill="#c0392b" stroke="white" stroke-width="2.5"/>
+  <text x="106.9" y="49.2" text-anchor="middle" dominant-baseline="middle" fill="white" font-weight="bold" font-size="12" font-family="-apple-system,sans-serif">9%</text>
+
+  <!-- Donut hole -->
+  <circle cx="130" cy="130" r="54" fill="white"/>
+
+  <!-- Center label -->
+  <text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#176873" font-weight="bold" font-size="18" font-family="-apple-system,sans-serif">1,126</text>
+  <text x="130" y="141" text-anchor="middle" dominant-baseline="middle" fill="#57606a" font-size="11" font-family="-apple-system,sans-serif">pts available</text>
+</svg>

@@ -114,34 +114,55 @@ def upsert_page(html_path, build_dir, token, base_url, course_id):
     slug = page_slug_from_path(html_path, build_dir)
     title = page_title_from_path(html_path, build_dir)
 
+    # Check whether this page already exists and, if so, whether it's
+    # already published. A page a student can currently see must stay
+    # visible after a content-only edit -- silently flipping published back
+    # to False here would pull it out from under them. Only brand-new pages
+    # default to unpublished (the original "upload as draft, publish
+    # manually" behavior).
+    already_published = False
+    page_exists = False
+    try:
+        existing = canvas_request(
+            'GET',
+            f'courses/{course_id}/pages/{slug}',
+            token, base_url,
+        )
+        page_exists = True
+        already_published = bool(existing.get('published'))
+    except urllib.error.HTTPError as e:
+        if e.code != 404:
+            raise
+
     page_data = {
         'wiki_page': {
             'title': title,
             'body': body,
-            'published': False,   # Upload as draft; publish manually in Canvas
+            'published': already_published,  # False for new pages, preserved for existing ones
         }
     }
 
-    # Try to update existing page first, then create
-    try:
+    if page_exists:
         result = canvas_request(
             'PUT',
             f'courses/{course_id}/pages/{slug}',
             token, base_url,
             data=page_data
         )
-        print(f"  [updated] {slug}")
+        status_note = " (was already published — kept published)" if already_published else ""
+        print(f"  [updated] {slug}{status_note}")
+        return result
+
+    try:
+        result = canvas_request(
+            'POST',
+            f'courses/{course_id}/pages',
+            token, base_url,
+            data=page_data
+        )
+        print(f"  [created] {slug}")
         return result
     except urllib.error.HTTPError as e:
-        if e.code == 404:
-            result = canvas_request(
-                'POST',
-                f'courses/{course_id}/pages',
-                token, base_url,
-                data=page_data
-            )
-            print(f"  [created] {slug}")
-            return result
         if e.code == 400:
             # Front page cannot be set to unpublished — retry as published
             page_data['wiki_page']['published'] = True
