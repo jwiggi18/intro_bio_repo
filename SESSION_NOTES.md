@@ -857,3 +857,43 @@ All 9 OpenStax URLs verified live via WebFetch before use (exact section number/
 Added the own-creation language to both the required Part 1 visual and the optional Part 2 illustration, per Jodie's standing rule above. Verified via a follow-up GET on both quizzes: no `PLACEHOLDER` text remains, "own creation" phrase present, Part 1/Part 2 structure present. Kept the rest of the quiz description (header, due date, "what this quiz is for," Blog Setup & Guidelines link, academic-integrity footer) exactly as the script template generated it.
 
 ---
+
+## 2026-08-24 — blogs.txt push confirmed live
+- Jodie pushed the 11-entry blogs.txt update to GitHub herself (commit "Adding first set of blog to the randomizer").
+- Verified via raw.githubusercontent.com/jwiggi18/intro_bio_repo/main/docs/randomizer/blogs.txt — all 11 entries present and correct on main.
+- Remaining gate before students can actually use the randomizer via Blog Comments: blog-directory page and all 14 Blog Comment Declaration quizzes are still unpublished (sandbox + live). Data is ready; visibility is not yet.
+
+---
+
+## 2026-08-24 — Weekly image added to the bottom of every week page (all 3 targets)
+
+Jodie asked for a space for an image at the bottom of each week, using the "cute happy imgs" in `1.courses_taught/1.Intro_Bio/1.2026/cute_happy_imgs` (labeled by week). Confirmed two decisions with her first: (1) embed the image live (not just reserve empty space), following the existing `{{SLIDES_URL:<key>}}`/`{{NOTES_URL:<key>}}` per-target placeholder pattern rather than a one-off; (2) Week 15 had two candidate files in that folder — she picked `Week15_dino_lemon.JPG` over `Week_15_Octopus_purse.JPG`.
+
+**Built:**
+- `scripts/week_images_source/` — the 15 weekly JPGs copied in from iCloud (mirrors `learning_notes_source/`)
+- New `.week-image` / `.week-image-img` CSS in `course-styles.css` (centered, rounded corner, bordered)
+- New `{{WEEK_IMAGE_URL:weekNN}}` resolver in `build/inline_css.py`, same shape as SLIDES_URL/NOTES_URL — missing key leaves that one placeholder unresolved with a warning rather than breaking the page
+- New `week_image_urls` dict (per target) in `canvas_targets.py`
+- New `scripts/upload_week_images_to_canvas.py` — uploads the 15 images to a target's Canvas Files, prints the dict to paste in
+- Inserted a `<!-- Weekly Image start/end -->` block at the bottom of all 30 `weekNN/week.html` + `hybrid/weekNN/week.html` files (right after Assignments, before the closing `.page-wrap` div), via a one-off script (not hand-edited) so all 30 stayed byte-consistent. Alt text auto-derived from each image's filename (e.g. `Week11_being_ready_myth_.JPG` → "The myth of being ready") — not reviewed word-by-word by Jodie yet, worth a pass if she cares about exact alt-text wording.
+- Documented the new element in `docs/MODULE-STANDARDS.md` (Content Rules + CSS Components table)
+
+**Pushed live, all 3 targets, Jodie approved upfront ("push all 3 now"):**
+- Ran `upload_week_images_to_canvas.py` for sandbox/live/hybrid — 45 files uploaded to Canvas Files (course ids 215536/238411/239593), URLs pasted into `canvas_targets.py`
+- Rebuilt all 3 targets (`build/inline_css.py <target>`) — zero warnings, no unresolved `WEEK_IMAGE_URL` placeholders anywhere
+- Re-uploaded all 45 week pages via `upload_to_canvas.py <target>` — publish state preserved correctly (`week01-week`/`week02-week` on live+hybrid stayed published, everything else stayed draft, per the script's existing GET-before-PUT logic)
+- Verified via a follow-up GET on live's `week01-week`: still `published: true`, image block present with a real Canvas-hosted `<img>` URL
+
+**Still open:** alt text wasn't reviewed by Jodie word-by-word (see above) — worth a look if exact wording matters to her. `Week_15_Octopus_purse.JPG` and a couple of unlabeled images (`blog_img.JPG`, `Passionate_Intense_Insane.JPG`) are still sitting in the source `cute_happy_imgs` folder, unused — fine as-is, just flagging in case she meant one of them for something else.
+
+---
+
+## 2026-08-2X — blogs.txt updated to 21 entries from refreshed blog_addresses.xlsx
+
+Jodie updated `blog_addresses.xlsx` and added a "Working?" column (separate from the existing "Correct" column) — a row with any comment there means the address isn't working; blank means it's fine to include. She asked to add addresses that have no comment in that column.
+
+Read the spreadsheet fresh (35 student rows). Filtered to rows with a URL present AND "Working?" blank: 21 qualifying rows (up from the 11 already in `blogs.txt`). Added the 10 new ones — Avalos, Bowden, DeLeon, Jackson-Guthrie, Medina, President-James, Rangel, Richards, Robertson, Sabin — in the same domain-only label format (`domain.wordpress.com | https://full-url`), no student names, matching Jodie's Aug 23 privacy decision. Confirmed via diff that the existing 11 lines were untouched, only the 10 new ones were inserted.
+
+**Excluded (Working? has a comment):** Chen (private), Offutt/Aysen (no first post), Offutt/Scout (no first post), Racy (private), Riley (private), Rozell (private), Viscarra (private), Walker (private) — plus rows with no URL at all (Brannon, Kelty, Meeker, Mostrom, Shaheen, Silvis).
+
+**Local repo copy updated, NOT yet live** — same standing gate as before: this session has no GitHub push credentials, so `docs/randomizer/blogs.txt` only reaches GitHub Pages once Jodie pastes the updated content into GitHub's web editor herself (file's own header documents the steps). Flagged to her directly. Re-check whether she's done that before assuming the live randomizer reflects 21 entries in a future session — the local and live copies can silently diverge again if she adds more rows without pushing.

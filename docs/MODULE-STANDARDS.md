@@ -88,6 +88,17 @@ No other HTML files belong in week folders. Slides live in `slides/weekNN/`.
 - Marked clearly as optional
 - Keep the section short — do not let it compete with required content
 
+### Weekly Image
+- Every week page (all targets — sandbox/live/hybrid) ends with one "cute happy img"
+  in a `.week-image` block, right after the Assignments section and before the closing
+  `.page-wrap` `</div>`
+- One image per week, sourced from `1.courses_taught/1.Intro_Bio/1.2026/cute_happy_imgs`
+  (iCloud), staged into `scripts/week_images_source/`
+- Resolved per target via `{{WEEK_IMAGE_URL:weekNN}}` — same pattern as `{{SLIDES_URL:<key>}}`
+  / `{{NOTES_URL:<key>}}` — see `canvas_targets.py`'s `week_image_urls` and
+  `scripts/upload_week_images_to_canvas.py`
+- Added Aug 24, 2026 at Jodie's request
+
 ---
 
 ## CSS Components
@@ -107,6 +118,7 @@ All styles come from `course-styles.css`. Never write inline styles manually or 
 | Assignment links | `.assignment-links` | Lean list of name → Canvas link, in the Assignments section |
 | Notice box | `.notice-box` | Optional/supplemental callouts, and the Week 1 Learning Notes reminder (see below) |
 | Lecture notice | `.lecture-notice` | **Hybrid course only.** Replaces the first `.video-card` each week — that content is covered live at Monday lecture instead of watched online. See `hybrid/weekNN/week.html`. |
+| Weekly image | `.week-image` / `.week-image-img` | The one "cute happy img" at the bottom of every week page — see "Weekly Image" above. |
 
 ---
 

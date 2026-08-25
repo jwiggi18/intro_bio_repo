@@ -509,6 +509,25 @@ def resolve_placeholders(html_text, src_path, target_config):
 
         html_text = re.sub(r"\{\{NOTES_URL:([A-Za-z0-9_-]+)\}\}", _resolve_notes_url, html_text)
 
+    if "{{WEEK_IMAGE_URL:" in html_text:
+        # Generic per-week placeholder for the "cute happy img" that sits at
+        # the bottom of every week page (scripts/upload_week_images_to_canvas.py
+        # output), same pattern as SLIDES_URL/NOTES_URL above -- one
+        # placeholder per week, keyed by "week01".."week15".
+        week_image_urls = target_config.get("week_image_urls", {})
+
+        def _resolve_week_image_url(match):
+            key = match.group(1)
+            url = week_image_urls.get(key)
+            if url:
+                return url
+            print(f"  [warn] {src_path.relative_to(ROOT)} — no week_image_url for '{key}' in this "
+                  f"target; {{{{WEEK_IMAGE_URL:{key}}}}} left UNRESOLVED (image will be broken). "
+                  f"Run scripts/upload_week_images_to_canvas.py against this target first.")
+            return match.group(0)
+
+        html_text = re.sub(r"\{\{WEEK_IMAGE_URL:([A-Za-z0-9_-]+)\}\}", _resolve_week_image_url, html_text)
+
     return html_text
 
 

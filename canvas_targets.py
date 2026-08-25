@@ -65,6 +65,15 @@ Each target needs:
     broken) until this is filled in. Run
     scripts/upload_chart_to_canvas.py against a course to upload it, then
     paste the resulting URL in here.
+  - week_image_urls: that course's own hosted copies of the weekly "cute
+    happy img" (source: 1.courses_taught/1.Intro_Bio/1.2026/cute_happy_imgs,
+    staged into scripts/week_images_source/), keyed by week ("week01" ...
+    "week15"). Also NOT shared across courses. Referenced from every week
+    page via {{WEEK_IMAGE_URL:weekNN}} -- a missing key leaves that one
+    placeholder unresolved rather than breaking the whole page, same as
+    slides_urls/notes_urls. Run scripts/upload_week_images_to_canvas.py
+    against a course to upload the full set, then paste the resulting dict
+    in here.
 
 To add a new target (a new semester's section, another instructor's course,
 etc.): copy one of the blocks below, fill in the course_id, run
@@ -116,6 +125,24 @@ TARGETS = {
         "syllabus_pdf_url": "https://canvas.okstate.edu/files/26570571/download?download_frd=1&verifier=f584d376-9267-40c4-a3f6-f401e1d49ca9",
         "chart_image_url": "https://canvas.okstate.edu/files/26482456/download?download_frd=1&verifier=o5RBhzPh7ATKKQ21Nv2txPsoFmEhjTW3mzmDRv3Q",
         "multipage_pdf_url": "https://canvas.okstate.edu/files/26569303/download?download_frd=1&verifier=6c716755-702c-4a68-a239-f3a39222322f",
+        # Uploaded Aug 24, 2026 via scripts/upload_week_images_to_canvas.py.
+        "week_image_urls": {
+            "week01": "https://canvas.okstate.edu/files/26672364/download?download_frd=1&verifier=221c64df-f604-4046-84dd-57bb8654490e",
+            "week02": "https://canvas.okstate.edu/files/26672365/download?download_frd=1&verifier=036d53f5-1f18-459b-ad95-edc8c83be108",
+            "week03": "https://canvas.okstate.edu/files/26672366/download?download_frd=1&verifier=8f5ee202-0e03-49df-b6dd-c1d620dffe4b",
+            "week04": "https://canvas.okstate.edu/files/26672368/download?download_frd=1&verifier=e1b66adc-8717-4dc7-8348-20b0ace83994",
+            "week05": "https://canvas.okstate.edu/files/26672369/download?download_frd=1&verifier=1afc0c9a-b265-4954-a964-8411c324a366",
+            "week06": "https://canvas.okstate.edu/files/26672370/download?download_frd=1&verifier=cf73bc7a-252e-49ed-a6ef-8554316be6ec",
+            "week07": "https://canvas.okstate.edu/files/26672371/download?download_frd=1&verifier=957bef12-82e6-4a5a-b64f-8a39f357ee63",
+            "week08": "https://canvas.okstate.edu/files/26672372/download?download_frd=1&verifier=850b2402-ae7e-426e-8a0a-aab5661f874b",
+            "week09": "https://canvas.okstate.edu/files/26672373/download?download_frd=1&verifier=3e1d0104-0467-4ad8-9dc5-9a7a8e94e283",
+            "week10": "https://canvas.okstate.edu/files/26672374/download?download_frd=1&verifier=c1d9ad92-9ee1-4e5b-8b0b-e8ea1de5ae5a",
+            "week11": "https://canvas.okstate.edu/files/26672375/download?download_frd=1&verifier=19cd8a70-9645-4cb3-844b-db7773a59525",
+            "week12": "https://canvas.okstate.edu/files/26672377/download?download_frd=1&verifier=9ccc7c94-4ab2-44be-b2cb-ab0b41162915",
+            "week13": "https://canvas.okstate.edu/files/26672378/download?download_frd=1&verifier=0cc75d80-271a-4ca1-bc7d-0546ffc6d545",
+            "week14": "https://canvas.okstate.edu/files/26672379/download?download_frd=1&verifier=670c6c1e-af2e-4a17-b54e-b7749f091f75",
+            "week15": "https://canvas.okstate.edu/files/26672380/download?download_frd=1&verifier=d4b8a12e-7ebe-4fdb-bedf-694b18c74853",
+        },
         # Weeks 1-2 guided Learning Notes .docx handouts, uploaded Aug 17,
         # 2026 via scripts/upload_learning_notes_to_canvas.py. Keys match
         # slides_urls stems where a slide deck also exists for that video.
@@ -170,6 +197,24 @@ TARGETS = {
         "syllabus_pdf_url": "https://canvas.okstate.edu/files/26570572/download?download_frd=1&verifier=8a514192-b6a2-4ccd-b4de-27a6d4b36b91",
         "chart_image_url": "https://canvas.okstate.edu/files/26482457/download?download_frd=1&verifier=NQHKoLhs2nukRk0uc3VtzXzsAJ39FvB1N3FG5trv",
         "multipage_pdf_url": "https://canvas.okstate.edu/files/26569325/download?download_frd=1&verifier=8b319392-2680-45cc-9cd6-31796bc5f47a",
+        # Uploaded Aug 24, 2026 via scripts/upload_week_images_to_canvas.py.
+        "week_image_urls": {
+            "week01": "https://canvas.okstate.edu/files/26672382/download?download_frd=1&verifier=d7e17f58-bda6-46c0-86a2-f68c148cdf6d",
+            "week02": "https://canvas.okstate.edu/files/26672383/download?download_frd=1&verifier=ced4976b-96ce-4be6-bc99-451ee9de8431",
+            "week03": "https://canvas.okstate.edu/files/26672384/download?download_frd=1&verifier=a33a8d30-b250-4135-8300-834a526b190e",
+            "week04": "https://canvas.okstate.edu/files/26672385/download?download_frd=1&verifier=e2845455-49fc-4cb8-a586-8325e0fda824",
+            "week05": "https://canvas.okstate.edu/files/26672386/download?download_frd=1&verifier=cc6407e6-39d7-4526-8502-917b61c799a3",
+            "week06": "https://canvas.okstate.edu/files/26672388/download?download_frd=1&verifier=e3ff0143-26b9-4695-835f-ff1313ced11f",
+            "week07": "https://canvas.okstate.edu/files/26672389/download?download_frd=1&verifier=45191d86-dddd-4b66-bab5-9fb74b22f5dd",
+            "week08": "https://canvas.okstate.edu/files/26672391/download?download_frd=1&verifier=1bfc18ab-f156-4b3d-ad95-e6293ce6d4a9",
+            "week09": "https://canvas.okstate.edu/files/26672392/download?download_frd=1&verifier=b9acd8a3-eddf-4828-852c-058cc754ceca",
+            "week10": "https://canvas.okstate.edu/files/26672393/download?download_frd=1&verifier=a816d9b9-920c-4fae-87b9-4d7d335e07c9",
+            "week11": "https://canvas.okstate.edu/files/26672394/download?download_frd=1&verifier=9c7ee443-7989-4511-b1fa-be268d8bea77",
+            "week12": "https://canvas.okstate.edu/files/26672395/download?download_frd=1&verifier=594f9658-6f57-4bdc-84a6-0fac905445e0",
+            "week13": "https://canvas.okstate.edu/files/26672396/download?download_frd=1&verifier=8c2d1294-e5ef-438c-90a9-b0ea341f3b7c",
+            "week14": "https://canvas.okstate.edu/files/26672398/download?download_frd=1&verifier=97e5529e-1f39-4974-b997-a9d413a71145",
+            "week15": "https://canvas.okstate.edu/files/26672399/download?download_frd=1&verifier=0a13e5ad-d2fe-4f18-8b4b-b3c9a6808357",
+        },
         # Weeks 1-2 guided Learning Notes .docx handouts, uploaded Aug 17,
         # 2026 via scripts/upload_learning_notes_to_canvas.py. Keys match
         # slides_urls stems where a slide deck also exists for that video.
@@ -225,6 +270,24 @@ TARGETS = {
         },
         "chart_image_url": "https://canvas.okstate.edu/files/26527152/download?download_frd=1&verifier=51e6d4b4-6b92-42f5-b66d-ebe796210997",
         "multipage_pdf_url": "https://canvas.okstate.edu/files/26569344/download?download_frd=1&verifier=00db8885-27f0-42ba-a79c-84039e52cd99",
+        # Uploaded Aug 24, 2026 via scripts/upload_week_images_to_canvas.py.
+        "week_image_urls": {
+            "week01": "https://canvas.okstate.edu/files/26672400/download?download_frd=1&verifier=c47d71e1-4b81-4410-bde5-67572cd54fbb",
+            "week02": "https://canvas.okstate.edu/files/26672401/download?download_frd=1&verifier=35b0588a-8270-47cd-9726-0ec7471a6808",
+            "week03": "https://canvas.okstate.edu/files/26672404/download?download_frd=1&verifier=09bdf900-4741-48a5-9f06-ad75d3a89217",
+            "week04": "https://canvas.okstate.edu/files/26672406/download?download_frd=1&verifier=aa63dc18-4056-4211-911a-f72baf918b87",
+            "week05": "https://canvas.okstate.edu/files/26672409/download?download_frd=1&verifier=2662b5b5-a51f-41c3-bb55-304972d03df2",
+            "week06": "https://canvas.okstate.edu/files/26672411/download?download_frd=1&verifier=faf54119-b3f6-44de-a6b6-38bb54fba517",
+            "week07": "https://canvas.okstate.edu/files/26672412/download?download_frd=1&verifier=9cd7d43c-d4c9-4d4d-8282-5ff8b22630f9",
+            "week08": "https://canvas.okstate.edu/files/26672414/download?download_frd=1&verifier=f3257ea7-f5fa-4318-a30f-61ddf63336dd",
+            "week09": "https://canvas.okstate.edu/files/26672415/download?download_frd=1&verifier=60024079-95f0-4db6-96d4-18de857d0e30",
+            "week10": "https://canvas.okstate.edu/files/26672416/download?download_frd=1&verifier=45476286-4069-4d8c-b8d3-943abbf93ae2",
+            "week11": "https://canvas.okstate.edu/files/26672417/download?download_frd=1&verifier=8c75a9e4-cf23-48bd-9b74-15f8059fa9c3",
+            "week12": "https://canvas.okstate.edu/files/26672418/download?download_frd=1&verifier=3d102c58-620f-4da4-a0b8-65506cc6dcd6",
+            "week13": "https://canvas.okstate.edu/files/26672419/download?download_frd=1&verifier=7e0a6757-04e0-4d77-919f-7a1933cfcfbc",
+            "week14": "https://canvas.okstate.edu/files/26672420/download?download_frd=1&verifier=9e88e30c-0b80-409f-a49d-9d4dd643629d",
+            "week15": "https://canvas.okstate.edu/files/26672421/download?download_frd=1&verifier=1e780157-f096-4535-820f-84c8d8e3d209",
+        },
         # Weeks 1-2 guided Learning Notes .docx handouts, uploaded Aug 17,
         # 2026 via scripts/upload_learning_notes_to_canvas.py. Keys match
         # slides_urls stems where a slide deck also exists for that video.
