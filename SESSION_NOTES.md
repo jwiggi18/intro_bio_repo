@@ -897,3 +897,100 @@ Read the spreadsheet fresh (35 student rows). Filtered to rows with a URL presen
 **Excluded (Working? has a comment):** Chen (private), Offutt/Aysen (no first post), Offutt/Scout (no first post), Racy (private), Riley (private), Rozell (private), Viscarra (private), Walker (private) — plus rows with no URL at all (Brannon, Kelty, Meeker, Mostrom, Shaheen, Silvis).
 
 **Local repo copy updated, NOT yet live** — same standing gate as before: this session has no GitHub push credentials, so `docs/randomizer/blogs.txt` only reaches GitHub Pages once Jodie pastes the updated content into GitHub's web editor herself (file's own header documents the steps). Flagged to her directly. Re-check whether she's done that before assuming the live randomizer reflects 21 entries in a future session — the local and live copies can silently diverge again if she adds more rows without pushing.
+
+---
+
+## 2026-08-25 — Blog Commenting Etiquette added to all 28 Blog Comment Declaration quizzes (sandbox + live); Week 2 specific instructions written
+
+Jodie asked for the "Blog Commenting Etiquette" section (from `blog-directory.html`, under `#commenting-etiquette`) to be added into every "Week N Blog Comment Declaration" quiz's instructions, positioned under the existing "specific instructions" placeholder — and for Week 2's placeholder specifically to be filled in with: "Last week you and your classmates created your blog and made your first post. This post is particularly personal. Follow the posting etiquette guidelines below, and be conscientious that you are commenting on a real person's real joys." (typo-corrected from her draft — "your and your" → "you and your").
+
+**Built:**
+- `scripts/create_declaration_quizzes.py` — added a `SPECIFIC_INSTRUCTIONS` dict (currently just week 2's text) and `specific_instructions_html()`, which falls back to the existing `[PLACEHOLDER — Week N specific instructions]` block for any week not yet filled in. Added `ETIQUETTE_HTML`, a copy of `blog-directory.html`'s full Commenting Etiquette section (ground rules, "what counts as a substantive comment," the four color-coded example call-outs), with the page's `.section-heading`/`.assignment-block` wrapper classes stripped (quiz descriptions don't load `course-styles.css`) and its own trailing disclaimer removed (the quiz template already has one). `quiz_description()` now inserts the specific-instructions paragraph, then an `<hr>`, then the full Etiquette section, right after the "Before you submit this quiz" checklist and before the closing academic-integrity line.
+- `scripts/patch_declaration_quizzes_etiquette.py` (new, one-off) — pushes the new template onto the 28 quizzes that already existed before this change (the create script only touches quizzes it's creating fresh, so a separate patch was needed). Safety logic: skip any quiz whose description already contains "Blog Commenting Etiquette" (already patched), skip any quiz that doesn't contain the literal "[PLACEHOLDER" marker (hand-edited already — needs a manual look, not touched), otherwise PUT the new description and explicitly preserve the quiz's current `published` state. Note: an exact-string comparison against the original template was tried first and failed 100% of the time, because Canvas rewrites saved HTML on the way back out (`&mdash;` becomes a real em-dash, `<hr />` becomes `<hr>`, relative hrefs get absolutized with `data-api-endpoint` attributes) — switched to substring markers instead, which survive that rewriting since they're plain text inside `<strong>` tags, not markup.
+
+**Pushed live, sandbox + live** (Jodie approved "patch both now" after reviewing a dry run). All 14 quizzes patched on each target, 28/28 total, none skipped.
+
+- **Sandbox:** all 14 stayed unpublished (draft), as expected.
+- **Live:** Week 2 was already published (visible to real students) — flagged this to Jodie before pushing since it meant that one change would go out immediately; she approved anyway. Weeks 3-15 on live stayed unpublished.
+
+**Verified via follow-up GET:** live Week 2 (quiz id 534092) — `published: true`, placeholder gone, "particularly personal" text present, Etiquette section present. Live Week 3 (quiz id 534093) — `published: false`, placeholder text still intact (untouched, as intended since only week 2 has real specific-instructions text yet), Etiquette section present exactly once, no duplication.
+
+**Still open:** weeks 3-15 still show the generic `[PLACEHOLDER — Week N specific instructions]` paragraph above the Etiquette section — same standing gap as the Blog Post topics (see Aug 23 entry): Jodie hasn't written per-week specific instructions for those yet. Whenever a future session fills one in, add it to `SPECIFIC_INSTRUCTIONS` in `create_declaration_quizzes.py` and re-run the patch script (it will pick up any quiz still showing the placeholder marker) rather than hand-editing the quiz in Canvas directly, so the local script stays the source of truth.
+
+---
+
+## 2026-08-25 (continued) — Fixed broken Blogger/Blog Directory links on both blog setup pages (sandbox + live)
+
+Jodie reported that the "Set Up Your Blog with Blogger" link on the Blog Setup page was broken — clicking it tried to go to something like "blogger.html" instead of the actual instructions.
+
+**Root cause:** `blog-setup.html` and `blog-setup-blogger.html` cross-linked each other (and both linked to `blog-directory.html`) using plain relative file paths (`./blog-setup-blogger.html`, `./blog-setup.html`, `./blog-directory.html`) — a static-site-style link, not the `/courses/{{COURSE_ID}}/pages/<slug>` pattern this repo uses everywhere else for internal Canvas page links (see e.g. the Blog Comment Declaration quizzes' link to `blog-directory`). Once uploaded to Canvas, a bare relative href like that doesn't resolve to the actual wiki page — it's what Jodie saw as "blogger.html something."
+
+**Fixed all 4 broken links** (2 in each file): `blog-setup.html`'s links to `blog-setup-blogger` and `blog-directory`, and `blog-setup-blogger.html`'s links back to `blog-setup` and to `blog-directory` — all now use `/courses/{{COURSE_ID}}/pages/<slug>`, resolved at build time same as every other internal Canvas link in this repo. Confirmed all three page slugs (`blog-setup`, `blog-setup-blogger`, `blog-directory`) actually exist on both sandbox and live before pushing.
+
+**Pushed live, sandbox + live** (Jodie approved "push to sandbox + live"). Both `blog-setup` and `blog-setup-blogger` were already published on live (real students) — this fix went out immediately on that target; sandbox versions stayed unpublished drafts, as they were. Verified via a follow-up GET on all 4 pages (2 files × 2 targets): all now link to the correct absolute Canvas page URLs, and `published` state was preserved exactly as it was before the push (`true` on live, `false` on sandbox) on both pages.
+
+**Not touched:** the Blogger-external link (`https://www.blogger.com`) inside `blog-setup-blogger.html` was already a correct absolute external URL — left as-is.
+
+---
+
+## 2026-08-25 (continued) — Week 2 objectives rewritten to final 8-item list, sandbox ONLY; standing no-touch rule for Weeks 1-2 on live/hybrid
+
+Jodie supplied a new, final 8-objective list for Week 2 (replacing the 6 Claude-drafted objectives from Aug 23), and — critically — said: **from this point forward, do not touch Weeks 1 or 2 content on live or hybrid. She has made manual changes directly in Canvas on those two weeks on those two targets and does not want them overwritten.**
+
+**Pushed sandbox ONLY**, per that new rule. Updated `week02/week.html`'s objectives `<ul>` to the 8 items Jodie provided (Distinguish/Distinguish/Explain/Describe/Explain/Compare/Explain/Apply): prokaryotic vs. eukaryotic cells; ionic vs. covalent bonds and polarity; water's polarity and cell membranes (new); phospholipid bilayer structure and selective permeability; concentration gradients and solute/solvent movement (new); passive vs. active transport; the sodium-potassium pump powering secondary active transport; and applying gated ion channels/electrochemical gradients/osmosis to cholera and oral rehydration therapy. Built and pushed to sandbox (course 215536) only — did NOT touch live or hybrid. Verified via a follow-up GET: all 8 objectives present in the correct order, page still unpublished draft (unchanged).
+
+**This is now a standing rule, not a one-off:** any future work on Week 1 or Week 2 content (objectives, readings, video embeds, etc.) targeting `live` or `hybrid` needs to stop and get explicit confirmation from Jodie first — the old "always ask before pushing" norm alone doesn't cover this, since it's specifically about not clobbering her own manual Canvas edits on those two weeks. Sandbox remains open for continued iteration since it's the template course, not student-facing. Recorded in project memory so this isn't lost in a future session.
+
+**Note:** the Aug 23, 2026 entry describing 6 Week 2 objectives (this same file, further up) is now superseded by this 8-item list on sandbox — the live/hybrid Week 2 pages still show the older 6-objective version, since those targets are now off-limits per the rule above.
+
+---
+
+### Session: Aug 31, 2026 (Week 3 build: video titles/readings/embeds + guided notes, First Test flag on Weeks 3-4)
+
+**Week 3 finalized on root (sandbox+live) and hybrid, using `schedule_video_links.xlsx` as the source of truth for titles/readings/links.** The old 4-video placeholder structure (Send Signals / Receive Signals / What Does It Do Inside / Cholera) is now wrong — Jodie actually recorded 2 videos that consolidate the middle two ("How Cells Receive Signals" + "What Does It Do Inside the Cell?" → one video, "Cell Communication: Receptors and Transduction"), plus the Cholera video is now recorded (previously only a Claude-drafted sketch, see [[project_week3_signaling]]), plus a new 4th video was added: an external Amoeba Sisters video on dehydration synthesis/hydrolysis (Section 3.1). Week 3 is now 4 videos total, matching `video_transcripts/3-1` through `3-4`:
+
+1. Cell Communication: Cell Signaling Types — embed `91da4964-...` — Read 9.1
+2. Cell Communication: Receptors and Transduction — embed `e5732499-...` — Read 9.2 and 9.3
+3. Cholera: The Communication Connection — embed `b962768f-...` — no reading assigned
+4. Amoeba Sisters: Dehydration Synthesis & Hydrolysis — embed `5c86b71c-...` — Read 3.1 — note added in video-meta: "Hydrolysis begins at 4:18" (from the source video's own on-screen note)
+
+**⚠️ Flag for Jodie: `schedule_video_links.xlsx` assigns Section 9.3 as required reading for video 3-2, which conflicts with the Aug 20, 2026 decision logged in [[project_week3_signaling]] that 9.3's specific subtopics (gene expression, cell growth, cell death, etc.) should NOT be taught in Week 3 and instead land in later weeks.** Followed the spreadsheet as instructed (it's the explicit source of truth given this session), but wrote the 9.3 reading-card note to steer students toward the general framework only ("reception → transduction → response") and explicitly says the specific downstream effects come back up later in the semester — this softens but doesn't resolve the conflict. Worth Jodie confirming whether 9.3 should really be assigned this week or the spreadsheet should be corrected.
+
+**Video titles/reading titles corrected for typos from the spreadsheet** ("signalling"→"Signaling", "Ameoba"→"Amoeba", "Deydration"→"Dehydration", "communicaiton"→"Communication") — same pattern as prior sessions cleaning up Jodie's draft typos before publishing.
+
+**No slides or Learning Notes links wired yet for these 4 videos** — no video_slides PDFs exist for them, and the new guided-notes docx (below) haven't been uploaded to Canvas, so `notes-label` stays plain text (not a link) same as Weeks 1-2 did before their notes were uploaded. Next step when Jodie's ready: run `scripts/upload_learning_notes_to_canvas.py` for each target and wire `{{NOTES_URL:...}}` + add entries to `canvas_targets.py`'s `notes_urls`, same pattern as Weeks 1-2.
+
+**Guided-notes handouts created for all 4 Week 3 videos**, matching the established Weeks 1-2 format exactly (Times New Roman, navy `#1A3A5C` title, orange `#B84800` per-video header box, 2-column Fill-in-the-Blanks table). Delivered via SendUserFile and written to both `scripts/learning_notes_source/` and the iCloud `learning_notes/` folder:
+- `3-1 — Cell Communication- Cell Signaling Types.docx`
+- `3-2 — Cell Communication- Receptors and Transduction.docx`
+- `3-3 — Cholera- The Communication Connection.docx`
+- `3-4 — Amoeba Sisters- Dehydration Synthesis and Hydrolysis.docx`
+
+Blanks pulled directly from what's said in the transcripts provided this session (video 31/32 transcripts, the Cholera membrane-communication script, and the Amoeba Sisters video's captions). Note: the video-title line inside each header box uses a plain hyphen ("Video 3-1 - Title") instead of the em dash the existing Weeks 1-2 docs use ("Video 2-5 — Title"), per [[feedback_writing_style]]'s no-em-dash rule — the pre-existing intro boilerplate paragraph was left untouched (still has its original em dash) since that's shared, already-approved template text, not new authored content.
+
+**"First Test is Week 5" flag added to Weeks 3 and 4 only** (root + hybrid, i.e. sandbox/live/hybrid all covered — scope confirmed with Jodie: Weeks 3-4 only, not all 15 weeks), placed right after the Objectives box closes and before whatever comes next (Small Group section for hybrid, Learning Materials for root). Uses the existing `.notice-box` CSS class (no new CSS added). Content differs by course since root feeds both sandbox+live and hybrid is separate:
+- **Root (sandbox + live):** ProctorU/Measure Learning bullet list, webcam requirement, "video overview coming soon."
+- **Hybrid:** in-person paper test bullet list (Monday Sept 14, OSU ID required, no smart devices, accommodations must be discussed with Dr. Wiggins in advance, covers weeks 1-4 including the syllabus).
+
+**Weeks 1-2 on live/hybrid were NOT touched**, per the standing no-touch rule — confirmed nothing in this session's edits fell inside those files.
+
+**Not yet done, flagged for a future session:** Week 3/4 objectives are still `[TODO]` placeholders on all 3 targets (not in scope this session — only the flag box and, for Week 3, the video/reading/embed content were requested). No build/upload to Canvas happened this session — only local repo file edits. Local edits are uncommitted (see the git-hygiene note above); nothing pushed to GitHub or Canvas.
+
+---
+
+### Session: Aug 31, 2026 (continued — Learning Notes wired + pushed live, Jodie's edited docx used)
+
+**Jodie edited the 4 Week 3 guided-notes docx directly in the iCloud `learning_notes/` folder** (not the repo copy) — confirmed via mtime (iCloud copies ~15-25 min newer than the repo copies, and visibly smaller/re-saved by Word). Her edits: more blanks per row in several places, added prompts like "In the space to the right record what happens during each of these stages," "An enzyme is:", "Draw this process to the right," a note on 3-4 that "This video doesn't specifically discuss ATP or GTP hydrolysis but covers the general concept very well." Used her edited versions as-is, no further content changes — copied from iCloud into `scripts/learning_notes_source/`, overwriting the Claude-drafted originals from earlier this session.
+
+**Uploaded all 4 to Canvas Files and wired them into the week03 pages, all 3 targets:**
+- New script `scripts/upload_week3_learning_notes_to_canvas.py` (Week 3 only — deliberately NOT reusing `upload_learning_notes_to_canvas.py`'s NOTES dict as-is, since that dict still includes Weeks 1-2 entries and running it unmodified would have re-uploaded all of those too as duplicate Canvas Files).
+- Canvas file ids: sandbox 26740680-26740683, live 26740684-26740687, hybrid 26740688-26740691 (Cell_Signaling_Types / Receptors_and_Transduction / Cholera_Communication_Connection / Amoeba_Sisters_Dehydration_Hydrolysis, in that order per target).
+- Added these 4 `notes_urls` entries to all 3 target blocks in `canvas_targets.py` (inserted right after each block's existing `Cholera_explained` entry).
+- `week03/week.html`'s and `hybrid/week03/week.html`'s `notes-label` divs updated from plain text to `<a href="{{NOTES_URL:<key>}}">` links (hybrid's video-1 stays plain text — no notes-label there at all, since video 1 is the in-person lecture block with no online video).
+- Built and pushed `week03-week` to all 3 Canvas courses (`build/inline_css.py <target> week03/` then `scripts/upload_to_canvas.py <target> week03/`). Verified via follow-up GET: all 3 now show the video embeds, notes links, and the "First Test is Week 5" flag; sandbox stayed unpublished, live and hybrid correctly stayed published through the update.
+
+**⚠️ Important discovery this session: `week03-week` was ALREADY PUBLISHED on both `live` and `hybrid`** (not just draft, as prior sessions' notes implied) — confirmed via a GET before pushing. Its `updated_at` on both was only a few minutes old at the time of the check, suggesting Jodie (or something) touched the page's publish state very recently, but the page *body* itself was still the old, unfinished placeholder (old video titles like "How Cells Send Signals," no embeds, TODO objectives) — this is what Jodie was seeing when she said "I'm not seeing any videos on the live canvas pages." That's now fixed by this push. **Worth Jodie double-checking whether she meant to have `week03-week` published on `live`/`hybrid` already, since the standing assumption from earlier sessions was that only week01/week02 were published this early.**
+
+**Learning objectives for Week 3 were drafted in chat (not pushed anywhere)** per Jodie's request, for her to edit before they go on Canvas. Not yet applied to any file — next step is her edited version, then update `week03/week.html`'s objectives box (all 3 targets — Week 3 is not covered by the Weeks-1-2 no-touch rule) and rebuild/push.
+
+**.env was staged into the cloud workspace for this push (network needed for the Canvas API calls) and NOT left behind — cleaned up at the end of the session's cloud-side work, per the standing security pattern.**

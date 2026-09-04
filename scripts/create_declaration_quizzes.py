@@ -101,6 +101,81 @@ DUE_DATES_UTC = {
 }
 
 
+# Week-specific replacement text for the "specific instructions" paragraph
+# below. Only weeks Dr. Wiggins has actually given wording for appear here;
+# every other week falls back to the raw [PLACEHOLDER] text (see
+# specific_instructions_html()) -- never invent this content.
+SPECIFIC_INSTRUCTIONS = {
+    2: (
+        "Last week you and your classmates created your blog and made your first post. "
+        "This post is particularly personal. Follow the posting etiquette guidelines below, "
+        "and be conscientious that you are commenting on a real person&rsquo;s real joys."
+    ),
+}
+
+
+def specific_instructions_html(week_num):
+    text = SPECIFIC_INSTRUCTIONS.get(week_num)
+    if text:
+        return f"<p>{text}</p>"
+    return (
+        f"<p><strong>[PLACEHOLDER &mdash; Week {week_num} specific instructions]</strong><br />\n"
+        "Before publishing this quiz, replace this paragraph with any week-specific context or "
+        "reminders relevant to this week's commenting assignment.\n</p>"
+    )
+
+
+# "Blog Commenting Etiquette" section, copied from blog-directory.html's
+# #commenting-etiquette block (added to every week's declaration quiz, Aug
+# 2026, at Dr. Wiggins's request) -- stripped of the .section-heading /
+# .assignment-block wrapper classes since quiz descriptions don't load
+# course-styles.css, and stripped of its own trailing "spot-checked"
+# disclaimer since the quiz template already ends with an equivalent line.
+# Keep this in sync by hand if blog-directory.html's etiquette copy changes.
+ETIQUETTE_HTML = """<h2>Blog Commenting Etiquette</h2>
+
+<p>Your comments are an extension of a shared classroom. A few ground rules before you comment:</p>
+
+<ul>
+  <li>Write about ideas, not people. Disagree with a claim or interpretation, not with a person.</li>
+  <li>If a classmate's post has an error, note it kindly and constructively, or let it go. There is no version of "actually, you're wrong" that belongs in a blog comment.</li>
+  <li>Be especially careful with topics that touch on health, identity, culture, or belief. These come up in biology. Approach them with curiosity, not judgment.</li>
+  <li>If something in a classmate's blog or comment concerns you, contact your instructor directly rather than responding publicly.</li>
+</ul>
+
+<h3>What counts as a substantive comment</h3>
+
+<p>A substantive comment does at least one of these things, in 3&ndash;5+ sentences:</p>
+
+<ul>
+  <li>Asks a genuine question about something in the post.</li>
+  <li>Makes a connection to your own experience or to course content.</li>
+  <li>Respectfully adds information or a different perspective.</li>
+</ul>
+
+<p><strong>What it looks like in practice:</strong></p>
+
+<div style="margin: 14px 0; padding: 14px 16px; background: #ffeef0; border-left: 4px solid #f97583; border-radius: 4px;">
+  <div style="font-weight: 700; color: #86181d; margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.03em;">Too short &mdash; doesn't count</div>
+  <p style="margin: 0; font-style: italic; color: #57606a;">"Great post! I learned a lot."</p>
+</div>
+
+<div style="margin: 14px 0; padding: 14px 16px; background: #e6f4ea; border-left: 4px solid #2e7d32; border-radius: 4px;">
+  <div style="font-weight: 700; color: #2e7d32; margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.03em;">Asks a genuine question</div>
+  <p style="margin: 0; font-style: italic;">"I really liked how you connected cellular respiration to your workout routine. I'm curious &mdash; when you said you 'felt the burn' during your last set, do you think that was mostly lactic acid buildup, or could some of that have been from the CO2 your muscles were producing? I wasn't sure how those two processes overlap."</p>
+</div>
+
+<div style="margin: 14px 0; padding: 14px 16px; background: #e6f4ea; border-left: 4px solid #2e7d32; border-radius: 4px;">
+  <div style="font-weight: 700; color: #2e7d32; margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.03em;">Connects to personal experience</div>
+  <p style="margin: 0; font-style: italic;">"This made me think about when my grandmother was diagnosed with type 2 diabetes a few years ago. Reading your explanation of how insulin resistance develops actually helped me understand what her doctor meant when he talked about her cells not 'listening' to insulin anymore. It's strange how a concept can sit in the back of your mind for years and then suddenly click because of how someone else explains it."</p>
+</div>
+
+<div style="margin: 14px 0; padding: 14px 16px; background: #e6f4ea; border-left: 4px solid #2e7d32; border-radius: 4px;">
+  <div style="font-weight: 700; color: #2e7d32; margin-bottom: 4px; font-size: 16px; text-transform: uppercase; letter-spacing: 0.03em;">Respectfully adds information</div>
+  <p style="margin: 0; font-style: italic;">"Great explanation of natural selection! One small thing I'd add: you described it as species 'trying' to adapt, which is a really common way to talk about it, but our textbook points out that individuals don't actually change on purpose &mdash; the traits that happen to help an organism survive just get passed on more often. It's a subtle difference but it changed how I think about the whole process."</p>
+</div>"""
+
+
 def quiz_description(week_num, course_id):
     due_label = DUE_DATE_LABELS[week_num]
     due_line = f"Due Sunday, {due_label} at 11:59 PM" if due_label else "Due date TBD"
@@ -117,9 +192,11 @@ def quiz_description(week_num, course_id):
   <li>Your comments must be visible on your classmates' blogs (not just drafted).</li>
 </ul>
 
-<p><strong>[PLACEHOLDER &mdash; Week {week_num} specific instructions]</strong><br />
-Before publishing this quiz, replace this paragraph with any week-specific context or reminders relevant to this week's commenting assignment.
-</p>
+{specific_instructions_html(week_num)}
+
+<hr />
+
+{ETIQUETTE_HTML}
 
 <p style="color: #57606a; font-size: 18px;"><em>Blog comments are spot-checked. Submitting this declaration falsely is an academic integrity violation.</em></p>"""
 
@@ -313,7 +390,9 @@ def ensure_week_quiz(week_num, group_id, token, base_url, course_id, existing_qu
                 'Paste the full URL of the <strong>first</strong> blog post you commented on '
                 '(the URL of the specific post, not just the blog homepage).'
             ),
-            'question_type': 'short_answer_question',
+            'question_type': 'essay_question',  # NOT short_answer_question -- that auto-grades against an
+            # answers list we never set, marking every response incorrect. essay_question
+            # is free-response and never auto-graded. See scripts/patch_blog_url_questions.py.
             'points_possible': 0,
         }
     })
@@ -326,7 +405,9 @@ def ensure_week_quiz(week_num, group_id, token, base_url, course_id, existing_qu
                 'Paste the full URL of the <strong>second</strong> blog post you commented on '
                 '(the URL of the specific post, not just the blog homepage).'
             ),
-            'question_type': 'short_answer_question',
+            'question_type': 'essay_question',  # NOT short_answer_question -- that auto-grades against an
+            # answers list we never set, marking every response incorrect. essay_question
+            # is free-response and never auto-graded. See scripts/patch_blog_url_questions.py.
             'points_possible': 0,
         }
     })

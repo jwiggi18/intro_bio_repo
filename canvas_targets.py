@@ -158,6 +158,10 @@ TARGETS = {
             "Cell_Membrane_Passive_Transport": "https://canvas.okstate.edu/files/26595473/download?download_frd=1&verifier=1ccf0adb-bb1b-4ca9-b249-d1607040c712",
             "Cell_membrane_active_transport": "https://canvas.okstate.edu/files/26659335/download?download_frd=1&verifier=6ea77d50-6f8e-4ca0-b5af-7f500a480893",
             "Cholera_explained": "https://canvas.okstate.edu/files/26595475/download?download_frd=1&verifier=9ef76bd6-a48c-40d0-b86d-55e8a625c054",
+            "Cell_Signaling_Types": "https://canvas.okstate.edu/files/26740680/download?download_frd=1&verifier=3ed05d37-90b3-45fc-8565-95e2ce175a1a",
+            "Receptors_and_Transduction": "https://canvas.okstate.edu/files/26740681/download?download_frd=1&verifier=e8dbe061-4d1b-4442-a020-20412720b9ce",
+            "Cholera_Communication_Connection": "https://canvas.okstate.edu/files/26740682/download?download_frd=1&verifier=869dee32-6430-4eb3-9021-8035a2c01394",
+            "Amoeba_Sisters_Dehydration_Hydrolysis": "https://canvas.okstate.edu/files/26740683/download?download_frd=1&verifier=fc41b68f-b7b4-47a8-84dc-035b4715bee4",
         },
     },
 
@@ -230,6 +234,10 @@ TARGETS = {
             "Cell_Membrane_Passive_Transport": "https://canvas.okstate.edu/files/26595488/download?download_frd=1&verifier=53637a1a-c00a-4342-b2a0-2c565889dcde",
             "Cell_membrane_active_transport": "https://canvas.okstate.edu/files/26659337/download?download_frd=1&verifier=4605a780-7e27-4a34-a520-73aeffa91428",
             "Cholera_explained": "https://canvas.okstate.edu/files/26595490/download?download_frd=1&verifier=62ea6d14-75cc-40fb-b9aa-add5aab9f97f",
+            "Cell_Signaling_Types": "https://canvas.okstate.edu/files/26740684/download?download_frd=1&verifier=748469a1-639c-4856-9b6b-ffc14026bc70",
+            "Receptors_and_Transduction": "https://canvas.okstate.edu/files/26740685/download?download_frd=1&verifier=8dced6d8-41da-45d0-9274-fbd17c7f4b3c",
+            "Cholera_Communication_Connection": "https://canvas.okstate.edu/files/26740686/download?download_frd=1&verifier=79495346-018e-4adc-b286-a7115ba818a7",
+            "Amoeba_Sisters_Dehydration_Hydrolysis": "https://canvas.okstate.edu/files/26740687/download?download_frd=1&verifier=d4cceceb-e102-44c4-9c8e-18e00711382d",
         },
     },
 
@@ -303,6 +311,10 @@ TARGETS = {
             "Cell_Membrane_Passive_Transport": "https://canvas.okstate.edu/files/26595503/download?download_frd=1&verifier=2f9897ec-7451-4d31-8aa7-15c5ccc022c9",
             "Cell_membrane_active_transport": "https://canvas.okstate.edu/files/26659338/download?download_frd=1&verifier=b5878574-fe7c-4005-9166-4035753ef5bd",
             "Cholera_explained": "https://canvas.okstate.edu/files/26595505/download?download_frd=1&verifier=e0da646c-ddbc-465e-b074-31f0fe06fcea",
+            "Cell_Signaling_Types": "https://canvas.okstate.edu/files/26740688/download?download_frd=1&verifier=ae828da9-3943-49e5-a03a-a1358ca6816d",
+            "Receptors_and_Transduction": "https://canvas.okstate.edu/files/26740689/download?download_frd=1&verifier=a9b92eec-7540-433b-a575-451fcf7f32fd",
+            "Cholera_Communication_Connection": "https://canvas.okstate.edu/files/26740690/download?download_frd=1&verifier=94a22697-5872-47d9-8292-a611995d325a",
+            "Amoeba_Sisters_Dehydration_Hydrolysis": "https://canvas.okstate.edu/files/26740691/download?download_frd=1&verifier=56bc50ff-ff0e-4bd3-a31a-f2983db858b1",
         },
     },
 }
